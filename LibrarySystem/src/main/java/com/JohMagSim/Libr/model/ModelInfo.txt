@@ -1,0 +1,1 @@
+In this package the entity classes and their relative daos are kept.
