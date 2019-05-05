@@ -6,9 +6,11 @@ package com.JohMagSim.Libr.utils;
 
 
 import java.sql.*;
+import java.util.logging.*;
 
 public class DBInitiation {
     public static final String url = "jdbc:sqlite:library.db";
+    private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
 
     /**
@@ -23,13 +25,13 @@ public class DBInitiation {
 
         try {
             conn = DriverManager.getConnection(url);
-            System.out.println("DB connected for creation of "+table);
+            LOGGER.finer(" DBInitiation.class: DB connected for creation of "+table);
             stmt = conn.createStatement();
             stmt.execute(sql);
         }
         catch (SQLException e)
         {
-            System.out.println("In creation of table "+table+" this occured "+e.getMessage());
+            LOGGER.severe(" DBInitiation.class: In creation of table "+table+" this occurred "+e.getMessage());
         } finally {
             try {
                 if(stmt != null){
@@ -39,7 +41,7 @@ public class DBInitiation {
                     conn.close();
                 }
             } catch (Exception e){
-                System.out.println("In closing of connection creating  of table "+table+" this occured "+e.getMessage());
+                LOGGER.severe(" DBInitiation.class: In closing of connection creating  of table "+table+" this occurred "+e.getMessage());
             }
         }
     }

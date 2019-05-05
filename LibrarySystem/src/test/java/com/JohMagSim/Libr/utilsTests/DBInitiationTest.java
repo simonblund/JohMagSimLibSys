@@ -5,6 +5,7 @@ import org.junit.*;
 
 import java.sql.*;
 
+import static junit.framework.Assert.assertEquals;
 import static org.junit.Assert.assertEquals;
 
 public class DBInitiationTest {
