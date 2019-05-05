@@ -1,5 +1,9 @@
 # Changelog and descriptions
 
+## 05.05.2019 12:54 SB
+Added a logger function, so to use the logger for debugging and log handling use the LibraryLogger logger and use
+appropriate log level and readable log messages.
+
 ## 05.05.2019, 08:00 SB
 Added the last SQL tables, made a few changes to the ER implementation due to SQLite constraints this is esp. notable
 in Primary Key handling. NO TABLES HAVE NATURAL KEYS AS PRIMARY KEYS due to performance troubles when not using
