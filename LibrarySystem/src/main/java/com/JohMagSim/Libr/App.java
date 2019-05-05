@@ -1,5 +1,6 @@
 package com.JohMagSim.Libr;
 
+import com.JohMagSim.Libr.model.*;
 import com.JohMagSim.Libr.utils.*;
 import com.JohMagSim.Libr.utils.log.*;
 
@@ -27,10 +28,16 @@ public class App
 
 
         // Ask if SQL migrations should run.
-        System.out.println( "Yould you like to run database migrations? Y/N" );
+        System.out.println( "Would you like to run database migrations? Y/N" );
         Scanner inp = new Scanner(System.in);
         if(inp.nextLine().toLowerCase().equals("y")){
             DBInitiation.createTables();
+        }
+
+        // Ask if test of db connection  should run.
+        System.out.println( "Would you like to show users? Y/N" );
+        if(inp.nextLine().toLowerCase().equals("y")){
+            UserDAO.findUserFromName("Simon", "Blomster");
         }
 
 

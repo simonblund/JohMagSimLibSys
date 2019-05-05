@@ -1,5 +1,9 @@
 # Changelog and descriptions
 
+## 05.05.2019 16:33 SB
+Made the first entity class (User) and its DAO, select using firstname and lastname works flawlessly.
+Not added unittests but commits anyway just so you can see how I went about it. :)
+
 ## 05.05.2019 12:54 SB
 Added a logger function, so to use the logger for debugging and log handling use the LibraryLogger logger and use
 appropriate log level and readable log messages.
