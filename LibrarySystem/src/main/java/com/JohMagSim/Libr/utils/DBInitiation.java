@@ -122,8 +122,24 @@ public class DBInitiation {
         // Copy table
         createTable("CREATE TABLE IF NOT EXISTS copy (\n"
                 + "	id integer PRIMARY KEY,\n"
-                + "	name text NOT NULL\n"
+                + "	item_id integer,\n"
+                + "	barcode text NOT NULL,\n"
+                + "	isDepreceted integer DEFAULT 0,\n"
+                + "	isLoanedOut integer DEFAULT 0,\n"
+                + "	FOREIGN KEY (item_id) REFERENCES item(id) ON DELETE CASCADE \n"
                 + ");", "copy");
+
+        // Loan table
+        createTable("CREATE TABLE IF NOT EXISTS loan (\n"
+                + "	id integer PRIMARY KEY,\n"
+                + "	copy_id integer,\n"
+                + "	user_id integer,\n"
+                + "	timeOfCheckout text NOT NULL,\n"
+                + "	timeOfExpectedReturn text,\n"
+                + "	timeOfReturn text,\n"
+                + "	FOREIGN KEY (copy_id) REFERENCES copy(id) ON DELETE CASCADE, \n"
+                + "	FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE \n"
+                + ");", "loan");
 
     }
 

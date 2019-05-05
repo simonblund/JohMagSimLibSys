@@ -7,11 +7,11 @@ import java.sql.*;
  */
 
 public class DBConnection {
-    private Connection connection = null;
+    private static Connection connection = null;
 
-    private void createConnection(){
+    private static void createConnection(){
         try {
-           connection = DriverManager.getConnection("jdbc:sqlite:library.db");
+           connection = DriverManager.getConnection(DBInitiation.url);
             System.out.println("DB created");
         }
         catch (SQLException e)
@@ -20,7 +20,7 @@ public class DBConnection {
         }
     }
 
-    private Connection getConnection(){
+    public static Connection getConnection(){
         if(connection == null){
             createConnection();
             return connection;
@@ -30,7 +30,7 @@ public class DBConnection {
         }
     }
 
-    private void closeConnection(Connection conn) {
+    public static void closeConnection(Connection conn) {
         try {
             if (conn != null) {
                 conn.close();
