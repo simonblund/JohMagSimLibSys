@@ -1,5 +1,5 @@
 package com.JohMagSim.Libr.utils;
-/**
+/*
  * This class is used to create tables in the library sqlite database.
  * @Author SimonBlund
  */
@@ -73,9 +73,57 @@ public class DBInitiation {
         // Staff table
         createTable("CREATE TABLE IF NOT EXISTS staff (\n"
                 + "	id integer PRIMARY KEY,\n"
-                + "	manager integer DEFAULT 0,\n"
-                + "	booksAtATime integer NOT NULL\n"
+                + "	manager integer DEFAULT 0\n"
                 + ");", "staff");
+
+        // Item table
+        createTable("CREATE TABLE IF NOT EXISTS item (\n"
+                + "	id integer PRIMARY KEY,\n"
+                + " ISBN_EAN text NOT NULL, \n"
+                + "	title text NOT NULL,\n"
+                + "	edition text NOT NULL DEFAULT 1,\n"
+                + "	year text,\n"
+                + "	manager integer DEFAULT 0,\n"
+                + "	publisher_id integer,\n"
+                + "	itemcategory_id integer,\n"
+                + "	FOREIGN KEY (publisher_id) REFERENCES publisher(id) ON DELETE SET NULL, \n"
+                + "	FOREIGN KEY (itemcategory_id) REFERENCES itemCategory(id) ON DELETE SET NULL \n"
+                + ");", "Item");
+
+        // ItemCategory table
+        createTable("CREATE TABLE IF NOT EXISTS itemCategory (\n"
+                + "	id integer PRIMARY KEY,\n"
+                + "	name text NOT NULL,\n"
+                + "	maximumLoanTime integer NOT NULL DEFAULT 14\n"
+                + ");", "ItemCategory");
+
+        // AuthorArtist table
+        createTable("CREATE TABLE IF NOT EXISTS authorArtist (\n"
+                + "	id integer PRIMARY KEY,\n"
+                + "	fName text NOT NULL,\n"
+                + "	lName text NOT NULL\n"
+                + ");", "authorArtist");
+
+        // Publisher table
+        createTable("CREATE TABLE IF NOT EXISTS publisher (\n"
+                + "	id integer PRIMARY KEY,\n"
+                + "	name text NOT NULL\n"
+                + ");", "publisher");
+
+        // AuthorItem table
+        createTable("CREATE TABLE IF NOT EXISTS author_item (\n"
+                + "	author_id integer NOT NULL,\n"
+                + "	item_id integer NOT NULL,\n"
+                + "	PRIMARY KEY (author_id, item_id), \n"
+                + "	FOREIGN KEY (author_id) REFERENCES authorArtist(id) ON DELETE CASCADE, \n"
+                + "	FOREIGN KEY (item_id) REFERENCES item(id) ON DELETE CASCADE \n"
+                + ");", "author_item");
+
+        // Copy table
+        createTable("CREATE TABLE IF NOT EXISTS copy (\n"
+                + "	id integer PRIMARY KEY,\n"
+                + "	name text NOT NULL\n"
+                + ");", "copy");
 
     }
 
