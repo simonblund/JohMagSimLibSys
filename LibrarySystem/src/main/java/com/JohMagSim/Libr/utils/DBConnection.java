@@ -12,7 +12,7 @@ public class DBConnection {
     private static void createConnection(){
         try {
            connection = DriverManager.getConnection(DBInitiation.url);
-            System.out.println("DB created");
+            System.out.println("DB connection created");
         }
         catch (SQLException e)
         {

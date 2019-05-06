@@ -12,6 +12,10 @@ public class User {
     private UserType usertype;
 
 
+
+
+
+
     // Setters & Getters
     public int getId() {
         return id;
@@ -51,6 +55,22 @@ public class User {
 
     public void setPasswordHash(String passwordHash) {
         this.passwordHash = passwordHash;
+    }
+
+    public String getPasswordResetToken() {
+        return passwordResetToken;
+    }
+
+    public void setPasswordResetToken(String passwordResetToken) {
+        this.passwordResetToken = passwordResetToken;
+    }
+
+    public UserType getUsertype() {
+        return usertype;
+    }
+
+    public void setUsertype(UserType usertype) {
+        this.usertype = usertype;
     }
 
 }
