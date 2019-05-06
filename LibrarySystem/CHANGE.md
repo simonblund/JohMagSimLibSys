@@ -1,5 +1,10 @@
 # Changelog and descriptions
 
+## 06.05.2019 10:36 MF
+Made first draft of entity class Loan + LoanDAO based on User + UserDAO. Unsure on how to handle date – as a String, 
+or Date-Object? 
+
+
 ## 05.05.2019 16:33 SB
 Made the first entity class (User) and its DAO, select using firstname and lastname works flawlessly.
 Not added unittests but commits anyway just so you can see how I went about it. :)
