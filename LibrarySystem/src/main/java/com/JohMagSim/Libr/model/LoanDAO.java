@@ -11,6 +11,7 @@ public class LoanDAO {
 
     //@TODO update findLoanFromUserID with Copy
     //@TODO add more methods
+    //@TODO the find loan functions will probably need to filter out returned or old loans somehow.
 
 
     /**
