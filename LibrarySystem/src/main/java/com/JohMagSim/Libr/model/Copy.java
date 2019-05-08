@@ -1,4 +1,4 @@
-package main.java.com.JohMagSim.Libr.model;
+package com.JohMagSim.Libr.model;
 
 public class Copy {
     private int itemID;
