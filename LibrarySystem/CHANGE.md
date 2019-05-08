@@ -1,4 +1,6 @@
 # Changelog and descriptions
+## 08.05.2019 10:54 JN
+copy.java added
 
 ## 06.05.2019 10:36 MF
 Made first draft of entity class Loan + LoanDAO based on User + UserDAO. Unsure on how to handle date – as a String, 
