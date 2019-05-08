@@ -1,4 +1,11 @@
 # Changelog and descriptions
+
+
+## 08.05.2019 SB
+- Added more functions to the user DAO.
+- Fixed STATE in the COPY-DB table now doing int 0 = available, 1= loaned out, 2= deprecated.
+
+
 ## 08.05.2019 10:54 JN
 copy.java added
 

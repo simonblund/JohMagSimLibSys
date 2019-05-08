@@ -37,7 +37,9 @@ public class App
         // Ask if test of db connection  should run.
         System.out.println( "Would you like to show users? Y/N" );
         if(inp.nextLine().toLowerCase().equals("y")){
-            UserDAO.findUserFromName("Simon", "Blomster");
+            ArrayList<User> users = UserDAO.findUsersFromName("Simon", "Blomsterlund");
+            System.out.println(users.size());
+            System.out.println(users.get(0).getFirstName() + " " + users.get(0).getFirstName() );
         }
 
 
