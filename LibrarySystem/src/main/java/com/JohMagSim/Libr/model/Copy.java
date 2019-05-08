@@ -1,4 +1,4 @@
-package main.java.com.JohMagSim.Libr.model;
+package com.JohMagSim.Libr.model;
 
 public class Copy {
     private int itemID;
@@ -8,7 +8,6 @@ public class Copy {
     private String classification;
     private int state; //Enum? Skulle kunna vara Enum i .java
     // och int i SQLLite då SQLLite inte kan hantera Enum
-    private boolean onLoan;
 
     public Copy(int itemID, String title, int barCode, String location, String classification, int state, boolean onLoan) {
         this.itemID = itemID;
@@ -17,7 +16,6 @@ public class Copy {
         this.location = location;
         this.classification = classification;
         this.state = state;
-        this.onLoan = onLoan;
     }
 
     public int getItemID() {
@@ -68,14 +66,6 @@ public class Copy {
         this.state = state;
     }
 
-    public boolean isOnLoan() {
-        return onLoan;
-    }
-
-    public void setOnLoan(boolean onLoan) {
-        this.onLoan = onLoan;
-    }
-
     @Override
     public String toString() {
         return "Copy{" +
@@ -85,7 +75,6 @@ public class Copy {
                 ", location='" + location + '\'' +
                 ", classification='" + classification + '\'' +
                 ", state=" + state +
-                ", onLoan=" + onLoan +
                 '}';
     }
 }
