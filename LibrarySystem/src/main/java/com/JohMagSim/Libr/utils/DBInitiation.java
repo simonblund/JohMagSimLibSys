@@ -126,8 +126,7 @@ public class DBInitiation {
                 + "	id integer PRIMARY KEY,\n"
                 + "	item_id integer,\n"
                 + "	barcode text NOT NULL,\n"
-                + "	isDepreceted integer DEFAULT 0,\n"
-                + "	isLoanedOut integer DEFAULT 0,\n"
+                + "	state integer DEFAULT 0,\n"
                 + "	FOREIGN KEY (item_id) REFERENCES item(id) ON DELETE CASCADE \n"
                 + ");", "copy");
 
