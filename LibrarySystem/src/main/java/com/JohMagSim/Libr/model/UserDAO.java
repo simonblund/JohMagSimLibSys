@@ -84,8 +84,8 @@ public class UserDAO {
      */
     public static void saveUser(User user){
         Connection conn = DBConnection.getConnection();
-        String sql = "INSERT INTO users(fName,lName,email, passwordHash, passwordResetToken," +
-                " userTypeID) VALUES(?,?,?,?,?,?) ;";
+        String sql = "INSERT INTO users(fName, lName, email, passwordHash, passwordResetToken," +
+                " userTypeID) VALUES (?,?,?,?,?,?);";
 
         try{
             PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -96,14 +96,14 @@ public class UserDAO {
             pstmt.setString(3, user.getEmail());
             pstmt.setString(4, user.getPasswordHash());
             pstmt.setString(5, user.getPasswordResetToken());
-            pstmt.setInt(6, user.getUsertype().getId());
+            pstmt.setInt(6, 1);
 
            pstmt.executeUpdate();
 
         } catch (SQLException e){
             LOGGER.severe("saveUser " +e.getMessage());
         } finally {
-            DBConnection.closeConnection(conn);
+           // DBConnection.closeConnection(conn);
         }
     }
 

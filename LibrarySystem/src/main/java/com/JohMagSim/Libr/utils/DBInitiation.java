@@ -9,7 +9,7 @@ import java.sql.*;
 import java.util.logging.*;
 
 public class DBInitiation {
-    public static final String url = "jdbc:sqlite:library.db";
+    public static final String url = "jdbc:sqlite:resources/library.db";
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
 
