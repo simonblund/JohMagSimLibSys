@@ -142,6 +142,16 @@ public class DBInitiation {
                 + "	FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE \n"
                 + ");", "loan");
 
+        // dvd table
+        createTable("CREATE TABLE IF NOT EXISTS dvd (\n"
+                + "	id integer PRIMARY KEY,\n"
+                + "	item_id integer,\n"
+                + "	age_restriction integer,\n"
+                + "	director text NOT NULL,\n"
+                + "	prod_country text,\n"
+                + "	FOREIGN KEY (item_id) REFERENCES item(id) ON DELETE CASCADE \n"
+                + ");", "dvd");
+
     }
 
 }
