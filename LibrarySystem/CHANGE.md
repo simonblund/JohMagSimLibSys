@@ -1,6 +1,9 @@
 # Changelog and descriptions
 
 
+## 09.05.2019 SB 23:55
+- Added functions for finding users and staff from email address.
+
 ## 09.05.2019 SB 16:30
 - For multiple inserts in one DAO save function check my solution for StaffDAO saveStaff.
 - Started with the StaffDAO and Stafftest. To be continued.

@@ -78,6 +78,39 @@ public class UserDAO {
     }
 
     /**
+     * findUser from email
+     * Uses email to frind a single unique user from the db.
+     * @param email
+     * @return
+     */
+    public static User findUserFromEmail(String email){
+        Connection conn = DBConnection.getConnection();
+        String sql = "SELECT * FROM users WHERE email = ? ;";
+        ResultSet rs = null;
+        User result = null;
+        // TODO: 05-05-2019 Should probably check what happens if user does not exist in db.
+        try{
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, email);
+            rs = pstmt.executeQuery();
+
+            // Create user from the result.
+            User user = new User();
+            user.setId(rs.getInt("id"));
+            user.setFirstName(rs.getString("fName"));
+            user.setLastName(rs.getString("lName"));
+            user.setEmail(rs.getString("email"));
+            result = user;
+
+        } catch (SQLException e){
+            LOGGER.severe("findUserFromId " +e.getMessage());
+        } finally {
+            DBConnection.closeConnection(conn);
+        }
+        return result;
+    }
+
+    /**
      * saveUser takes a user object, with all fields filled(!) and persists it.
      * Returns nothing but logs error.
      * @param user

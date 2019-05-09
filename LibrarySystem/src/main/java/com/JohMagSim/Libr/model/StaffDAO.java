@@ -82,6 +82,35 @@ public class StaffDAO {
         return result;
     }
 
+    public static Staff findStaffFromEmail(String email){
+        Connection conn = DBConnection.getConnection();
+        String sql = "SELECT * FROM users INNER JOIN staff ON users.staffID = staff.id WHERE users.email = ?;";
+        ResultSet rs = null;
+        Staff result = null;
+        // TODO: 05-05-2019 Should probably check what happens if user does not exist in db.
+        try{
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, email);
+            rs = pstmt.executeQuery();
+
+            // Create user from the result.
+            Staff user = new Staff();
+            user.setId(rs.getInt("id"));
+            user.setFirstName(rs.getString("fName"));
+            user.setLastName(rs.getString("lName"));
+            user.setEmail(rs.getString("email"));
+            user.setStaffId(rs.getInt("staffID"));
+            user.setManagerint(rs.getInt("manager"));
+            result = user;
+
+        } catch (SQLException e){
+            LOGGER.severe("findStaffFromEmail " +e.getMessage());
+        } finally {
+            DBConnection.closeConnection(conn);
+        }
+        return result;
+    }
+
     /**
      * saveUser takes a staff object, with all fields filled(!) and persists it.
      * Returns nothing but logs error.
