@@ -12,15 +12,15 @@ public class StaffDAO {
 
     /**
      * Search for staff with firstname and lastname, returns staff with all parameters from
-     * both tables.
+     * both tables. Only returns staff by using inner join in sql.
      * @param firstName String First name
      * @param lastName String last name
      * @return Arraylist with staffs.
      */
     public static ArrayList<Staff> findStaffFromName(String firstName, String lastName){
         Connection conn = DBConnection.getConnection();
-        String sql = "SELECT * FROM users LEFT JOIN staff ON users.staffID = staff.id WHERE fName LIKE ? " +
-                "AND lName LIKE ? AND staffID != NULL;";
+        String sql = "SELECT * FROM users INNER JOIN staff ON users.staffID = staff.id WHERE fName LIKE ? " +
+                "AND lName LIKE ?;";
         ResultSet rs = null;
         ArrayList<Staff> result = new ArrayList<Staff>();
         try{
@@ -36,6 +36,7 @@ public class StaffDAO {
                 user.setLastName(rs.getString("lName"));
                 user.setEmail(rs.getString("email"));
                 user.setStaffId(rs.getInt("staffID"));
+                user.setManagerint(rs.getInt("manager"));
                 result.add(user);
             }
 
@@ -54,7 +55,7 @@ public class StaffDAO {
      */
     public static Staff findStaffFromId(int id){
         Connection conn = DBConnection.getConnection();
-        String sql = "SELECT * FROM users LEFT JOIN staff ON users.staffID = staff.id WHERE id = ? AND staffID != NULL;";
+        String sql = "SELECT * FROM users INNER JOIN staff ON users.staffID = staff.id WHERE users.id = ?;";
         ResultSet rs = null;
         Staff result = null;
         // TODO: 05-05-2019 Should probably check what happens if user does not exist in db.
@@ -69,6 +70,8 @@ public class StaffDAO {
             user.setFirstName(rs.getString("fName"));
             user.setLastName(rs.getString("lName"));
             user.setEmail(rs.getString("email"));
+            user.setStaffId(rs.getInt("staffID"));
+            user.setManagerint(rs.getInt("manager"));
             result = user;
 
         } catch (SQLException e){

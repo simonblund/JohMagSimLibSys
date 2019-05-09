@@ -25,6 +25,15 @@ public class Staff extends User {
         }
     }
 
+    public void setManagerint(int managerint){
+        if(managerint == 1){
+            this.manager = true;
+        }
+        else{
+            this.manager = false;
+        }
+    }
+
     public void setManager(boolean manager) {
         this.manager = manager;
     }
