@@ -34,6 +34,7 @@ public class DBConnection {
         try {
             if (conn != null) {
                 conn.close();
+                connection = null;
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());

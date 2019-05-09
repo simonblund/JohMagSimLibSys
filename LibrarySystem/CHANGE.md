@@ -1,5 +1,10 @@
 # Changelog and descriptions
 
+## 09.05.2019 SB 14:44
+- Fixed problem with DBconnection being closed if running two updates during the same initiation.
+- Fixed user tests.
+- Fixed Tests not being able to connect to DB.
+
 ## 09.05.2019 MF
 - Changed date-format in Loan to LocalDate
 - Updated LoanDao findLoanFromUserID to filter out loans who has been returned
