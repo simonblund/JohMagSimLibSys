@@ -1,5 +1,8 @@
 # Changelog and descriptions
 
+## 09.05.2019 MF
+- Changed date-format in Loan to LocalDate
+- Updated LoanDao findLoanFromUserID to filter out loans who has been returned
 
 ## 08.05.2019 SB
 - Added more functions to the user DAO.

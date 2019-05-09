@@ -3,6 +3,7 @@ package com.JohMagSim.Libr.model;
 import com.JohMagSim.Libr.utils.*;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.logging.*;
 
@@ -12,6 +13,10 @@ public class LoanDAO {
     //@TODO update findLoanFromUserID with Copy
     //@TODO add more methods
     //@TODO the find loan functions will probably need to filter out returned or old loans somehow.
+    //@TODO add methods for
+    //  insert
+    //  update
+    //  delete
 
 
     /**
@@ -24,19 +29,23 @@ public class LoanDAO {
 
     public static ArrayList findLoanFromUserID(int userID){
         Connection conn = DBConnection.getConnection();
-        String sql = "SELECT * FROM loan WHERE UserID = ?;";
+        String sql = "SELECT * FROM loan WHERE user_id = ? AND timeOfReturn IS NULL;";
         ResultSet rs = null;
         ArrayList result = new ArrayList();
         try{
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, userID);
             rs = pstmt.executeQuery();
+            LocalDate checkOutDate;
+            LocalDate returnDate;
 
             if(rs!=null){
                 while(rs.next()){
                     Loan loan = new Loan();
-                    loan.setDate(rs.getString("timeOfCheckout"));
-                    loan.setReturnDate(rs.getString("timeOfReturn"));
+                    checkOutDate = LocalDate.parse(rs.getString("timeOfCheckout"));
+                    loan.setDate(checkOutDate);
+                    returnDate = LocalDate.parse(rs.getString("timeOfReturn"));
+                    loan.setReturnDate(returnDate);
                     //loan.setCopy;
                     result.add(loan);
                 }
