@@ -9,9 +9,18 @@ import java.util.logging.*;
 public class StaffDAO {
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
+
+    /**
+     * Search for staff with firstname and lastname, returns staff with all parameters from
+     * both tables.
+     * @param firstName String First name
+     * @param lastName String last name
+     * @return Arraylist with staffs.
+     */
     public static ArrayList<Staff> findStaffFromName(String firstName, String lastName){
         Connection conn = DBConnection.getConnection();
-        String sql = "SELECT * FROM users WHERE fName LIKE ? AND lName LIKE ? AND staffID != NULL;";
+        String sql = "SELECT * FROM users LEFT JOIN staff ON users.staffID = staff.id WHERE fName LIKE ? " +
+                "AND lName LIKE ? AND staffID != NULL;";
         ResultSet rs = null;
         ArrayList<Staff> result = new ArrayList<Staff>();
         try{
@@ -26,11 +35,12 @@ public class StaffDAO {
                 user.setFirstName(rs.getString("fName"));
                 user.setLastName(rs.getString("lName"));
                 user.setEmail(rs.getString("email"));
+                user.setStaffId(rs.getInt("staffID"));
                 result.add(user);
             }
 
         } catch (SQLException e){
-            LOGGER.severe("findUsersFromName " +e.getMessage());
+            LOGGER.severe("findStaffsFromName " +e.getMessage());
         } finally {
             DBConnection.closeConnection(conn);
         }
@@ -38,13 +48,13 @@ public class StaffDAO {
     }
 
     /**
-     * findUserFromId, takes user id and returns the user if exists.
+     * findUserFromId, takes user id and returns the staff if exists.
      * @param id
      * @return
      */
     public static Staff findStaffFromId(int id){
         Connection conn = DBConnection.getConnection();
-        String sql = "SELECT * FROM users WHERE id = ? AND staffID != NULL;";
+        String sql = "SELECT * FROM users LEFT JOIN staff ON users.staffID = staff.id WHERE id = ? AND staffID != NULL;";
         ResultSet rs = null;
         Staff result = null;
         // TODO: 05-05-2019 Should probably check what happens if user does not exist in db.
@@ -62,7 +72,7 @@ public class StaffDAO {
             result = user;
 
         } catch (SQLException e){
-            LOGGER.severe("findUserFromId " +e.getMessage());
+            LOGGER.severe("findStaffFromId " +e.getMessage());
         } finally {
             DBConnection.closeConnection(conn);
         }
@@ -70,19 +80,25 @@ public class StaffDAO {
     }
 
     /**
-     * saveUser takes a user object, with all fields filled(!) and persists it.
+     * saveUser takes a staff object, with all fields filled(!) and persists it.
      * Returns nothing but logs error.
+     *
+     * NOTE: Aparently when doing multiple inserts you have to separate the prepared statements. Check the solution.
      * @param user
      */
     public static void saveStaff(Staff user){
         Connection conn = DBConnection.getConnection();
+
+        String sql_staff = "INSERT INTO staff (manager) VALUES(?); ";
+
         String sql = "INSERT INTO users(fName,lName,email, passwordHash, passwordResetToken," +
-                " userTypeID) VALUES(?,?,?,?,?,?) ;";
+                " userTypeID, staffID) VALUES(?,?,?,?,?,?,(SELECT last_insert_rowid() FROM staff));";
 
         try{
             PreparedStatement pstmt = conn.prepareStatement(sql);
+            PreparedStatement pstmt_staff = conn.prepareStatement(sql_staff);
 
-            // Set the parameters
+            pstmt_staff.setInt(1, user.isManagerint());
             pstmt.setString(1, user.getFirstName());
             pstmt.setString(2, user.getLastName());
             pstmt.setString(3, user.getEmail());
@@ -90,10 +106,12 @@ public class StaffDAO {
             pstmt.setString(5, user.getPasswordResetToken());
             pstmt.setInt(6, user.getUsertype().getId());
 
+
+            pstmt_staff.executeUpdate();
             pstmt.executeUpdate();
 
         } catch (SQLException e){
-            LOGGER.severe("saveUser " +e.getMessage());
+            LOGGER.severe("saveStaff " +e.getMessage());
         } finally {
             DBConnection.closeConnection(conn);
         }

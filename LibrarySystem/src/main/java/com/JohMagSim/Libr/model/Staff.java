@@ -16,6 +16,15 @@ public class Staff extends User {
         return manager;
     }
 
+    public int isManagerint(){
+        if(manager){
+            return 1;
+        }
+        else{
+            return 0;
+        }
+    }
+
     public void setManager(boolean manager) {
         this.manager = manager;
     }

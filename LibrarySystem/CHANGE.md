@@ -1,5 +1,11 @@
 # Changelog and descriptions
 
+
+## 09.05.2019 SB 16:30
+- For multiple inserts in one DAO save function check my solution for StaffDAO saveStaff.
+- Started with the StaffDAO and Stafftest. To be continued.
+
+
 ## 09.05.2019 SB 14:44
 - Fixed problem with DBconnection being closed if running two updates during the same initiation.
 - Fixed user tests.
