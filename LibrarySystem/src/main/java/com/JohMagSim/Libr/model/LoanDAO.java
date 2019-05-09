@@ -27,7 +27,7 @@ public class LoanDAO {
      */
 
 
-    public static ArrayList findLoanFromUserID(int userID){
+    public static ArrayList findActiveLoansFromUserID(int userID){
         Connection conn = DBConnection.getConnection();
         String sql = "SELECT * FROM loan WHERE user_id = ? AND timeOfReturn IS NULL;";
         ResultSet rs = null;
@@ -54,6 +54,35 @@ public class LoanDAO {
             LOGGER.severe("findLoanFromUserID " + e.getMessage());
         }
         return result;
+    }
+
+    /**
+     * insertLoan takes a loan object, with all fields filled(!) and persists it.
+     * Returns nothing but logs error.
+     * @param loan takes a full Loan object
+     */
+
+    public static void insertLoan(Loan loan){
+        Connection conn = DBConnection.getConnection();
+        String sql = "INSERT INTO loan(copy_id, user_id, timeOfCheckout, timeOfExpectedReturn" +
+                ") VALUES(?,?,?,?) ;";
+
+        try{
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+
+            // Set the parameters
+            pstmt.setInt(1, loan.getCopy().getItemID());
+            pstmt.setInt(2, loan.getUser().getId());
+            pstmt.setString(3, loan.getDate().toString());
+            pstmt.setString(4, loan.getReturnDate().toString());
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException e){
+            LOGGER.severe("saveUser " +e.getMessage());
+        } finally {
+            DBConnection.closeConnection(conn);
+        }
     }
 
 }

@@ -6,12 +6,11 @@ import java.text.SimpleDateFormat;
 
 public class Loan {
 
-    //@TODO add variable copy + get/set when Copy is developed
-
     // Variables
     private LocalDate date;
     private LocalDate returnDate;
-    //private Copy copy;
+    private Copy copy;
+    private User user;
 
 
     // Setters & Getters
@@ -30,6 +29,22 @@ public class Loan {
 
     public void setReturnDate(LocalDate returnDate) {
         this.returnDate = returnDate;
+    }
+
+    public Copy getCopy() {
+        return copy;
+    }
+
+    public void setCopy(Copy copy) {
+        this.copy = copy;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
 
