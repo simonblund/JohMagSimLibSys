@@ -31,5 +31,10 @@
       <version>4.13-beta-2</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>at.favre.lib</groupId>
+      <artifactId>bcrypt</artifactId>
+      <version>0.8.0</version>
+    </dependency>
   </dependencies>
 </project>

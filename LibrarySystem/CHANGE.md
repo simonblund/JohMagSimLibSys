@@ -1,5 +1,8 @@
 # Changelog and descriptions
 
+## 10.05.2019 SB 17:45
+- Added AuthControl with the sign in functionality.
+
 
 ## 09.05.2019 SB 23:55
 - Added functions for finding users and staff from email address.
