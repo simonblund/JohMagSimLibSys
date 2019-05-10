@@ -3,6 +3,7 @@ package com.JohMagSim.Libr;
 import com.JohMagSim.Libr.model.*;
 import com.JohMagSim.Libr.utils.*;
 import com.JohMagSim.Libr.utils.log.*;
+import com.JohMagSim.Libr.view.*;
 
 import java.io.*;
 import java.util.*;
@@ -33,6 +34,9 @@ public class App
         if(inp.nextLine().toLowerCase().equals("y")){
             DBInitiation.createTables();
         }
+        StaffLogin staffLogin = new StaffLogin();
+        staffLogin.setup();
+        staffLogin.setVisible(true);
 
         // Ask if test of db connection  should run.
         System.out.println( "Would you like to show users? Y/N" );
