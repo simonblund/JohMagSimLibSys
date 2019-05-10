@@ -10,8 +10,20 @@ public class Loan {
     private int loanId;
     private LocalDate date;
     private LocalDate returnDate;
-    private Copy copy;
-    private User user;
+    private int copyID;
+    private int userID;
+
+    public Loan(){
+        super();
+    }
+
+    public Loan(int loanId, LocalDate date, LocalDate returnDate, int copyID, int userID){
+        this.loanId = loanId;
+        this.date = date;
+        this.returnDate = returnDate;
+        this.copyID = copyID;
+        this.userID = userID;
+    }
 
 
     // Setters & Getters
@@ -41,20 +53,20 @@ public class Loan {
         this.returnDate = returnDate;
     }
 
-    public Copy getCopy() {
-        return copy;
+    public int getCopyID() {
+        return copyID;
     }
 
-    public void setCopy(Copy copy) {
-        this.copy = copy;
+    public void setCopyID(int copyID) {
+        this.copyID = copyID;
     }
 
-    public User getUser() {
-        return user;
+    public int getUserID() {
+        return userID;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(int userID) {
+        this.userID = userID;
     }
 
     //TODO override toString-method?
