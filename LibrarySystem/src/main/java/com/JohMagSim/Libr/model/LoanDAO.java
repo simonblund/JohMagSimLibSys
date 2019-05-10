@@ -11,8 +11,6 @@ public class LoanDAO {
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     //@TODO update findLoanFromUserID with Copy
-    //@TODO add more methods
-    //@TODO the find loan functions will probably need to filter out returned or old loans somehow.
     //@TODO add methods for
     //  insert
     //  update
@@ -46,7 +44,7 @@ public class LoanDAO {
                     loan.setDate(checkOutDate);
                     returnDate = LocalDate.parse(rs.getString("timeOfReturn"));
                     loan.setReturnDate(returnDate);
-                    //loan.setCopy;
+                    //loan.setCopy();
                     result.add(loan);
                 }
             }
@@ -79,7 +77,65 @@ public class LoanDAO {
             pstmt.executeUpdate();
 
         } catch (SQLException e){
-            LOGGER.severe("saveUser " +e.getMessage());
+            LOGGER.severe("insertLoan " +e.getMessage());
+        } finally {
+            DBConnection.closeConnection(conn);
+        }
+    }
+
+    /**
+     * updateReturnDateOnLoan takes a loan object, a new date and updates the timeOfExpectedReturn in database.
+     * Returns nothing but logs error.
+     * @param loan      takes a full Loan object
+     * @param newDate   a new date to be set as expected returndate
+     */
+
+    public static void updateExpectedReturnDateOnLoan(Loan loan, String newDate){
+        Connection conn = DBConnection.getConnection();
+        String sql = "UPDATE loan SET" +
+                " timeOfExpectedReturn = ?," +
+                " WHERE id = ?;";
+
+        try{
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+
+            // Set the parameters
+            pstmt.setString(1, newDate);
+            pstmt.setInt(2, loan.getLoanId());
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException e){
+            LOGGER.severe("insertLoan " +e.getMessage());
+        } finally {
+            DBConnection.closeConnection(conn);
+        }
+    }
+
+    /**
+     * updateReturnDateOnLoan takes a loan object and updates the timeOfReturn in database.
+     * Returns nothing but logs error.
+     * @param loan      takes a full Loan object
+     */
+
+    public static void updateReturnDateOnLoan(Loan loan){
+        Connection conn = DBConnection.getConnection();
+        String sql = "UPDATE loan SET" +
+                " timeOfReturn = ?," +
+                " WHERE id = ?;";
+        LocalDate today = LocalDate.now();
+
+        try{
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+
+            // Set the parameters
+            pstmt.setString(1, today.toString());
+            pstmt.setInt(2, loan.getLoanId());
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException e){
+            LOGGER.severe("insertLoan " +e.getMessage());
         } finally {
             DBConnection.closeConnection(conn);
         }

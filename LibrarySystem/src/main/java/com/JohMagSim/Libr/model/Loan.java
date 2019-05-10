@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 public class Loan {
 
     // Variables
+    private int loanId;
     private LocalDate date;
     private LocalDate returnDate;
     private Copy copy;
@@ -14,6 +15,15 @@ public class Loan {
 
 
     // Setters & Getters
+
+    public int getLoanId() {
+        return loanId;
+    }
+
+    public void setLoanId(int loanId) {
+        this.loanId = loanId;
+    }
+
 
     public LocalDate getDate() {
         return date;
@@ -47,6 +57,6 @@ public class Loan {
         this.user = user;
     }
 
-
+    //TODO override toString-method?
 
 }
