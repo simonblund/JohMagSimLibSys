@@ -1,15 +1,14 @@
 package com.JohMagSim.Libr.model;
 
 import java.time.LocalDate;
-import java.util.Date;
-import java.text.SimpleDateFormat;
 
 public class Loan {
 
     // Variables
-    private int loanId;
+    private int loanID;
     private LocalDate date;
-    private LocalDate returnDate;
+    private LocalDate actualReturnDate;
+    private LocalDate expectedReturnDate;
     private int copyID;
     private int userID;
 
@@ -17,25 +16,36 @@ public class Loan {
         super();
     }
 
-    public Loan(int loanId, LocalDate date, LocalDate returnDate, int copyID, int userID){
-        this.loanId = loanId;
+    public Loan(int loanID, LocalDate date, LocalDate expectedReturnDate, int copyID, int userID){
+        this.loanID = loanID;
         this.date = date;
-        this.returnDate = returnDate;
+        this.expectedReturnDate = expectedReturnDate;
         this.copyID = copyID;
         this.userID = userID;
     }
 
+    //toString
+    @Override
+    public String toString() {
+        return "Loan{" +
+                "loanID=" + loanID +
+                ", loandate='" + date + '\'' +
+                ", expected return date=" + expectedReturnDate +
+                ", actual return date=" + actualReturnDate +
+                ", copyID='" + copyID + '\'' +
+                ", userID='" + userID + '\'' +
+                '}';
+    }
 
     // Setters & Getters
 
-    public int getLoanId() {
-        return loanId;
+    public int getLoanID() {
+        return loanID;
     }
 
-    public void setLoanId(int loanId) {
-        this.loanId = loanId;
+    public void setLoanID(int loanID) {
+        this.loanID = loanID;
     }
-
 
     public LocalDate getDate() {
         return date;
@@ -45,12 +55,20 @@ public class Loan {
         this.date = date;
     }
 
-    public LocalDate getReturnDate() {
-        return returnDate;
+    public LocalDate getActualReturnDate() {
+        return actualReturnDate;
     }
 
-    public void setReturnDate(LocalDate returnDate) {
-        this.returnDate = returnDate;
+    public void setActualReturnDate(LocalDate actualReturnDate) {
+        this.actualReturnDate = actualReturnDate;
+    }
+
+    public LocalDate getExpectedReturnDate() {
+        return expectedReturnDate;
+    }
+
+    public void setExpectedReturnDate(LocalDate expectedReturnDate) {
+        this.expectedReturnDate = expectedReturnDate;
     }
 
     public int getCopyID() {
@@ -69,6 +87,5 @@ public class Loan {
         this.userID = userID;
     }
 
-    //TODO override toString-method?
 
 }

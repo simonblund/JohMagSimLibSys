@@ -37,16 +37,26 @@ public class LoanTest {
 
     }
 
+    //Tests that insertLoan inserted loan properly. Doesnt work for loanID and userID
+
     @Test
     public void insertLoan(){
         Loan loan = testLoan();
         LoanDAO.insertLoan(loan);
 
-        assertTrue(true);
+        System.out.println(loan);
+
+        ArrayList loanResult = LoanDAO.findAllActiveLoans();
+
+        Loan dbLoan = (Loan) loanResult.get(0);
+
+        for (Object loanElement : loanResult) {
+            System.out.println(loanElement);
+        }
+
+        assertEquals(loan.getCopyID(), dbLoan.getCopyID());
 
     }
-
-
 
 
 }

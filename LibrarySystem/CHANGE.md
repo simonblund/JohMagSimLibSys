@@ -1,5 +1,9 @@
 # Changelog and descriptions
 
+## 14.05.2019 16:32 MF
+- Updated LoanTest, now working test for insertLoan. 
+- Added method findOverDueLoans in LoanDAO
+
 ## 10.05.2019 SB 17:45
 - Added AuthControl with the sign in functionality.
 

@@ -10,7 +10,6 @@ import java.util.logging.*;
 public class LoanDAO {
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
-    //@TODO update findLoanFromUserID with Copy
     //@TODO add methods for
     //  insert
     //  update
@@ -42,8 +41,8 @@ public class LoanDAO {
                     checkOutDate = LocalDate.parse(rs.getString("timeOfCheckout"));
                     loan.setDate(checkOutDate);
                     //set expected returndate
-                    returnDate = LocalDate.parse(rs.getString("timeOfReturn"));
-                    loan.setReturnDate(returnDate);
+                    returnDate = LocalDate.parse(rs.getString("timeOfExpectedReturn"));
+                    loan.setExpectedReturnDate(returnDate);
                     //set copyId
                     loan.setCopyID(rs.getInt("copy_id"));
                     //set userId
@@ -86,7 +85,7 @@ public class LoanDAO {
                     loan.setDate(checkOutDate);
                     //set expected returndate
                     returnDate = LocalDate.parse(rs.getString("timeOfReturn"));
-                    loan.setReturnDate(returnDate);
+                    loan.setExpectedReturnDate(returnDate);
                     //set copyId
                     loan.setCopyID(rs.getInt("copy_id"));
                     //set userId
@@ -95,7 +94,50 @@ public class LoanDAO {
                 }
             }
         } catch (SQLException e){
-            LOGGER.severe("findLoanFromUserID " + e.getMessage());
+            LOGGER.severe("findActiveLoansFromUserID " + e.getMessage());
+        }
+        return result;
+    }
+
+    /**
+     * findOverdueLoans returns an arrayList of all active, but overdue, loans
+     *
+     * @return arrayList of Loans containing date of checkout, returndate, copyID and userID.
+     */
+
+
+    public static ArrayList findOverdueLoans(){
+        Connection conn = DBConnection.getConnection();
+        String sql = "SELECT * FROM loan WHERE timeOfExpectedReturn < ?;";
+        ResultSet rs = null;
+        ArrayList result = new ArrayList();
+        try{
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            LocalDate todaysDate = LocalDate.now();
+            pstmt.setString(1, todaysDate.toString());
+            rs = pstmt.executeQuery();
+            LocalDate checkOutDate;
+            LocalDate returnDate;
+
+            if(rs!=null){
+                while(rs.next()){
+                    //create new loan
+                    Loan loan = new Loan();
+                    //set Checkoutdate
+                    checkOutDate = LocalDate.parse(rs.getString("timeOfCheckout"));
+                    loan.setDate(checkOutDate);
+                    //set expected returndate
+                    returnDate = LocalDate.parse(rs.getString("timeOfExpectedReturn"));
+                    loan.setExpectedReturnDate(returnDate);
+                    //set copyId
+                    loan.setCopyID(rs.getInt("copy_id"));
+                    //set userId
+                    loan.setCopyID(rs.getInt("user_id"));
+                    result.add(loan);
+                }
+            }
+        } catch (SQLException e){
+            LOGGER.severe("findOverdueLoans " + e.getMessage());
         }
         return result;
     }
@@ -118,7 +160,7 @@ public class LoanDAO {
             pstmt.setInt(1, loan.getCopyID());
             pstmt.setInt(2, loan.getUserID());
             pstmt.setString(3, loan.getDate().toString());
-            pstmt.setString(4, loan.getReturnDate().toString());
+            pstmt.setString(4, loan.getExpectedReturnDate().toString());
 
             pstmt.executeUpdate();
 
@@ -147,12 +189,12 @@ public class LoanDAO {
 
             // Set the parameters
             pstmt.setString(1, newDate);
-            pstmt.setInt(2, loan.getLoanId());
+            pstmt.setInt(2, loan.getLoanID());
 
             pstmt.executeUpdate();
 
         } catch (SQLException e){
-            LOGGER.severe("insertLoan " +e.getMessage());
+            LOGGER.severe("updateExpectedReturnDateOnLoan " +e.getMessage());
         } finally {
             DBConnection.closeConnection(conn);
         }
@@ -176,12 +218,12 @@ public class LoanDAO {
 
             // Set the parameters
             pstmt.setString(1, today.toString());
-            pstmt.setInt(2, loan.getLoanId());
+            pstmt.setInt(2, loan.getLoanID());
 
             pstmt.executeUpdate();
 
         } catch (SQLException e){
-            LOGGER.severe("insertLoan " +e.getMessage());
+            LOGGER.severe("updateReturnDateOnLoan " +e.getMessage());
         } finally {
             DBConnection.closeConnection(conn);
         }
