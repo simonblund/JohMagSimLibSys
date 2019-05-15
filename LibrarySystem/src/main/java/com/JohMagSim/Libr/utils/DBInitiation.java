@@ -83,14 +83,13 @@ public class DBInitiation {
                 + "	id integer PRIMARY KEY AUTOINCREMENT,\n"
                 + " ISBN_EAN text NOT NULL, \n"
                 + "	title text NOT NULL,\n"
-                + "	edition text NOT NULL DEFAULT 1,\n"
-                + "	year text,\n"
+                + "	edition integer NOT NULL DEFAULT 1,\n"
+                + "	year integer,\n"
                 + "	staff_id integer,\n"
-                + "	publisher_id integer,\n"
-                + "	itemcategory_id integer,\n"
+                + "	itemCategory_id integer,\n"
                 + "	FOREIGN KEY (staff_id) REFERENCES staff(id) ON DELETE SET NULL, \n"
                 + "	FOREIGN KEY (publisher_id) REFERENCES publisher(id) ON DELETE SET NULL, \n"
-                + "	FOREIGN KEY (itemcategory_id) REFERENCES itemCategory(id) ON DELETE SET NULL \n"
+                + "	FOREIGN KEY (itemCategory_id) REFERENCES itemCategory(id) ON DELETE SET NULL \n"
                 + ");", "Item");
 
         // ItemCategory table
@@ -106,12 +105,6 @@ public class DBInitiation {
                 + "	fName text NOT NULL,\n"
                 + "	lName text NOT NULL\n"
                 + ");", "authorArtist");
-
-        // Publisher table
-        createTable("CREATE TABLE IF NOT EXISTS publisher (\n"
-                + "	id integer PRIMARY KEY,\n"
-                + "	name text NOT NULL\n"
-                + ");", "publisher");
 
         // AuthorItem table
         createTable("CREATE TABLE IF NOT EXISTS author_item (\n"
