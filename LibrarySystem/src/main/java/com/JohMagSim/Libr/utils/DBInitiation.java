@@ -80,7 +80,7 @@ public class DBInitiation {
 
         // Item table
         createTable("CREATE TABLE IF NOT EXISTS item (\n"
-                + "	id integer PRIMARY KEY,\n"
+                + "	id integer PRIMARY KEY AUTOINCREMENT,\n"
                 + " ISBN_EAN text NOT NULL, \n"
                 + "	title text NOT NULL,\n"
                 + "	edition text NOT NULL DEFAULT 1,\n"
@@ -124,7 +124,7 @@ public class DBInitiation {
 
         // Copy table
         createTable("CREATE TABLE IF NOT EXISTS copy (\n"
-                + "	id integer PRIMARY KEY,\n"
+                + "	id integer PRIMARY KEY AUTOINCREMENT,\n"
                 + "	item_id integer,\n"
                 + "	barcode text NOT NULL,\n"
                 + "	state integer DEFAULT 0,\n"
