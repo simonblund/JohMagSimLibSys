@@ -88,7 +88,6 @@ public class DBInitiation {
                 + "	staff_id integer,\n"
                 + "	itemCategory_id integer,\n"
                 + "	FOREIGN KEY (staff_id) REFERENCES staff(id) ON DELETE SET NULL, \n"
-                + "	FOREIGN KEY (publisher_id) REFERENCES publisher(id) ON DELETE SET NULL, \n"
                 + "	FOREIGN KEY (itemCategory_id) REFERENCES itemCategory(id) ON DELETE SET NULL \n"
                 + ");", "Item");
 
