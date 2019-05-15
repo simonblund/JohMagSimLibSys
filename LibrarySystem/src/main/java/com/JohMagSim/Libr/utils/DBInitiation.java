@@ -85,9 +85,10 @@ public class DBInitiation {
                 + "	title text NOT NULL,\n"
                 + "	edition text NOT NULL DEFAULT 1,\n"
                 + "	year text,\n"
-                + "	manager integer DEFAULT 0,\n"
+                + "	staff_id integer,\n"
                 + "	publisher_id integer,\n"
                 + "	itemcategory_id integer,\n"
+                + "	FOREIGN KEY (staff_id) REFERENCES staff(id) ON DELETE SET NULL, \n"
                 + "	FOREIGN KEY (publisher_id) REFERENCES publisher(id) ON DELETE SET NULL, \n"
                 + "	FOREIGN KEY (itemcategory_id) REFERENCES itemCategory(id) ON DELETE SET NULL \n"
                 + ");", "Item");
