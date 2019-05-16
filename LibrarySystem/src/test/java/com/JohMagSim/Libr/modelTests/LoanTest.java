@@ -1,4 +1,4 @@
-package com.JohMagSim.Libr.modelTests;
+/*package com.JohMagSim.Libr.modelTests;
 
 import com.JohMagSim.Libr.model.*;
 import org.junit.*;
@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 
 public class LoanTest {
 
- /*   private Loan loan;
+    private Loan loan;
     private Copy copy;
 
     public Loan testLoan(){
@@ -56,7 +56,7 @@ public class LoanTest {
 
         assertEquals(loan.getCopyID(), dbLoan.getCopyID());
 
-    } */
+    }
 
 
-}
+}*/
