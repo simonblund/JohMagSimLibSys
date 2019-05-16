@@ -16,10 +16,11 @@ public class Loan {
         super();
     }
 
-    public Loan(int loanID, LocalDate date, LocalDate expectedReturnDate, int copyID, int userID){
+    public Loan(int loanID, LocalDate date, LocalDate actualReturnDate, LocalDate expectedReturnDate, int copyID, int userID){
         this.loanID = loanID;
         this.date = date;
         this.expectedReturnDate = expectedReturnDate;
+        this.actualReturnDate = actualReturnDate;
         this.copyID = copyID;
         this.userID = userID;
     }
@@ -29,11 +30,11 @@ public class Loan {
     public String toString() {
         return "Loan{" +
                 "loanID=" + loanID +
-                ", loandate='" + date + '\'' +
-                ", expected return date=" + expectedReturnDate +
-                ", actual return date=" + actualReturnDate +
-                ", copyID='" + copyID + '\'' +
-                ", userID='" + userID + '\'' +
+                ", copyID=" + copyID  +
+                ", userID=" + userID +
+                ", timeOfCheckout=" + date +
+                ", timeOfExpectedReturn=" + expectedReturnDate +
+                ", timeOfReturn=" + actualReturnDate +
                 '}';
     }
 
@@ -83,7 +84,7 @@ public class Loan {
         return userID;
     }
 
-    public void setUser(int userID) {
+    public void setUserID(int userID) {
         this.userID = userID;
     }
 

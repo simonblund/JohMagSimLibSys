@@ -24,7 +24,7 @@ public class LoanDAO {
 
     public static ArrayList findAllActiveLoans(){
         Connection conn = DBConnection.getConnection();
-        String sql = "SELECT * FROM loan;";
+        String sql = "SELECT * FROM loan WHERE timeOfReturn is NULL;";
         ResultSet rs = null;
         ArrayList result = new ArrayList();
         try{
@@ -32,21 +32,29 @@ public class LoanDAO {
             rs = pstmt.executeQuery();
             LocalDate checkOutDate;
             LocalDate returnDate;
+            String actualReturnDate;
 
             if(rs!=null){
                 while(rs.next()){
                     //create new loan
                     Loan loan = new Loan();
+                    //set loanID
+                    loan.setLoanID(rs.getInt("id"));
                     //set Checkoutdate
                     checkOutDate = LocalDate.parse(rs.getString("timeOfCheckout"));
                     loan.setDate(checkOutDate);
                     //set expected returndate
                     returnDate = LocalDate.parse(rs.getString("timeOfExpectedReturn"));
                     loan.setExpectedReturnDate(returnDate);
+                    //set actual returndate
+                    actualReturnDate = rs.getString("timeOfReturn");
+                    if (actualReturnDate!= null) {
+                        loan.setActualReturnDate(LocalDate.parse(actualReturnDate));
+                    }
                     //set copyId
                     loan.setCopyID(rs.getInt("copy_id"));
                     //set userId
-                    loan.setCopyID(rs.getInt("user_id"));
+                    loan.setUserID(rs.getInt("user_id"));
                     result.add(loan);
                 }
             }
@@ -55,6 +63,49 @@ public class LoanDAO {
         }
         return result;
     }
+
+    public static ArrayList findAllLoans(){
+        Connection conn = DBConnection.getConnection();
+        String sql = "SELECT * FROM loan;";
+        ResultSet rs = null;
+        ArrayList result = new ArrayList();
+        try{
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            LocalDate checkOutDate;
+            LocalDate returnDate;
+            String actualReturnDate;
+
+            if(rs!=null){
+                while(rs.next()){
+                    //create new loan
+                    Loan loan = new Loan();
+                    //set loanID
+                    loan.setLoanID(rs.getInt("id"));
+                    //set Checkoutdate
+                    checkOutDate = LocalDate.parse(rs.getString("timeOfCheckout"));
+                    loan.setDate(checkOutDate);
+                    //set expected returndate
+                    returnDate = LocalDate.parse(rs.getString("timeOfExpectedReturn"));
+                    loan.setExpectedReturnDate(returnDate);
+                    //set actual returndate
+                    actualReturnDate = rs.getString("timeOfReturn");
+                    if (actualReturnDate!= null) {
+                        loan.setActualReturnDate(LocalDate.parse(actualReturnDate));
+                    }
+                    //set copyId
+                    loan.setCopyID(rs.getInt("copy_id"));
+                    //set userId
+                    loan.setUserID(rs.getInt("user_id"));
+                    result.add(loan);
+                }
+            }
+        } catch (SQLException e){
+            LOGGER.severe("findAllActiveLoans " + e.getMessage());
+        }
+        return result;
+    }
+
 
     /**
      * findLoansFromUserID takes in UserId parameter and returns an arrayList of
@@ -80,6 +131,8 @@ public class LoanDAO {
                 while(rs.next()){
                     //create new loan
                     Loan loan = new Loan();
+                    //set loanID
+                    loan.setLoanID(rs.getInt("id"));
                     //set Checkoutdate
                     checkOutDate = LocalDate.parse(rs.getString("timeOfCheckout"));
                     loan.setDate(checkOutDate);
@@ -89,7 +142,7 @@ public class LoanDAO {
                     //set copyId
                     loan.setCopyID(rs.getInt("copy_id"));
                     //set userId
-                    loan.setCopyID(rs.getInt("user_id"));
+                    loan.setUserID(rs.getInt("user_id"));
                     result.add(loan);
                 }
             }
@@ -181,7 +234,7 @@ public class LoanDAO {
     public static void updateExpectedReturnDateOnLoan(Loan loan, String newDate){
         Connection conn = DBConnection.getConnection();
         String sql = "UPDATE loan SET" +
-                " timeOfExpectedReturn = ?," +
+                " timeOfExpectedReturn = ?" +
                 " WHERE id = ?;";
 
         try{
@@ -209,7 +262,7 @@ public class LoanDAO {
     public static void updateReturnDateOnLoan(Loan loan){
         Connection conn = DBConnection.getConnection();
         String sql = "UPDATE loan SET" +
-                " timeOfReturn = ?," +
+                " timeOfReturn = ?" +
                 " WHERE id = ?;";
         LocalDate today = LocalDate.now();
 

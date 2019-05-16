@@ -27,6 +27,9 @@ public class App
 
         System.out.println( "Hello World!" );
 
+        LoanTerminalFrame frame = new LoanTerminalFrame("Låneterminal");
+        frame.setVisible(true);
+
 
         // Ask if SQL migrations should run.
         System.out.println( "Would you like to run database migrations? Y/N" );
@@ -45,9 +48,8 @@ public class App
             }
         }
 
-        StaffLogin staffLogin = new StaffLogin();
-        staffLogin.setup();
-        staffLogin.setVisible(true);
+        MainFrame mainFrame = new MainFrame("LibrarySys");
+        mainFrame.setVisible(true);
 
         // Ask if test of db connection  should run.
         System.out.println( "Would you like to show users? Y/N" );

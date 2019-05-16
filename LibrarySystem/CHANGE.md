@@ -1,8 +1,18 @@
 # Changelog and descriptions
 
+## 16.05.2019 10:02 MF
+- Added empty LoanControl. No implemented methods, only declaration for methods in class diagram.
+- Added a simple LoanTerminal, preview runs first in App. 
+
 ## 14.05.2019 16:32 MF
 - Updated LoanTest, now working test for insertLoan. 
 - Added method findOverDueLoans in LoanDAO
+
+## 15.05.2019 SB 13:09
+- Added ViewProperties
+- Colors: https://material.io/tools/color/#!/?view.left=1&view.right=0&primary.color=2962FF&secondary.color=43A047
+- About material https://material.io/design/
+- The view properties also contain window sizes.
 
 ## 10.05.2019 SB 17:45
 - Added AuthControl with the sign in functionality.
