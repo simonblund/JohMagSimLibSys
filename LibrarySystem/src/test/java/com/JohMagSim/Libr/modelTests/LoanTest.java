@@ -31,7 +31,11 @@ public class LoanTest {
 
         //testLoan
         LocalDate today = LocalDate.now();
-        loan = new Loan(1, LocalDate.now(), today.plusDays(14), copy.getItemID(), user.getId());
+        loan = new Loan();
+        loan.setUserID(user.getId());
+        loan.setDate(LocalDate.now());
+        loan.setExpectedReturnDate(today.plusDays(14));
+        loan.setCopyID(copy.getItemID());
 
         return loan;
 
@@ -44,9 +48,7 @@ public class LoanTest {
         Loan loan = testLoan();
         LoanDAO.insertLoan(loan);
 
-        System.out.println(loan);
-
-        ArrayList loanResult = LoanDAO.findAllActiveLoans();
+        ArrayList loanResult = LoanDAO.findAllLoans();
 
         Loan dbLoan = (Loan) loanResult.get(0);
 
@@ -57,6 +59,47 @@ public class LoanTest {
         assertEquals(loan.getCopyID(), dbLoan.getCopyID());
 
     }
+
+    @Test
+    public void testUpdateReturnDate(){
+        Loan loan = testLoan();
+        loan.setLoanID(5);
+
+        LoanDAO.updateReturnDateOnLoan(loan);
+
+        System.out.println(loan);
+
+        ArrayList loanResult = LoanDAO.findAllLoans();
+
+        Loan dbLoan = (Loan) loanResult.get(0);
+
+        for (Object loanElement : loanResult) {
+            System.out.println(loanElement);
+        }
+
+        assertEquals(loan.getActualReturnDate(), dbLoan.getActualReturnDate());
+    }
+
+    @Test
+    public void testUpdateExpectedReturnDate(){
+        Loan loan = testLoan();
+        loan.setLoanID(7);
+
+        LoanDAO.updateExpectedReturnDateOnLoan(loan, "2019-01-02");
+
+        System.out.println(loan);
+
+        ArrayList loanResult = LoanDAO.findAllLoans();
+
+        Loan dbLoan = (Loan) loanResult.get(0);
+
+        for (Object loanElement : loanResult) {
+            System.out.println(loanElement);
+        }
+
+        assertEquals(loan.getExpectedReturnDate(), dbLoan.getExpectedReturnDate());
+    }
+
 
 
 }
