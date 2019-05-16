@@ -7,8 +7,8 @@ public class DVDItem extends Item {
     private int ageRestriction;
     private List<String> actors;
 
-    public DVDItem(String title, String location, String type, int edition, int year, int staffId, int loantime, List<String> category, String prodCountry, int ageRestriction, List<String> actors) {
-        super(title, location, type, edition, year, staffId, loantime, category);
+    public DVDItem(String title, String location, String type, int edition, int year, int staffId, int loantime, String ISBNEAN, List<String> category, String prodCountry, int ageRestriction, List<String> actors) {
+        super(title, location, type, edition, year, staffId, loantime, ISBNEAN, category);
         this.prodCountry = prodCountry;
         this.ageRestriction = ageRestriction;
         this.actors = actors;

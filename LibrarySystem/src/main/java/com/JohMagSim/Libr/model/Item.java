@@ -11,9 +11,10 @@ public abstract class Item {
     private int year;
     private int staffId;
     private int loantime;
+    private String ISBNEAN;
     private List<String> category;
 
-    public Item(String title, String location, String type, int edition, int year, int staffId, int loantime, List<String> category) {
+    public Item(String title, String location, String type, int edition, int year, int staffId, int loantime, String ISBNEAN, List<String> category) {
         this.title = title;
         this.location = location;
         this.type = type;
@@ -21,6 +22,7 @@ public abstract class Item {
         this.year = year;
         this.staffId = staffId;
         this.loantime = loantime;
+        this.ISBNEAN = ISBNEAN;
         this.category = category;
     }
 
@@ -88,6 +90,14 @@ public abstract class Item {
         this.category = category;
     }
 
+    public String getISBNEAN() {
+        return ISBNEAN;
+    }
+
+    public void setISBNEAN(String ISBNEAN) {
+        this.ISBNEAN = ISBNEAN;
+    }
+
     @Override
     public String toString() {
         return "Item{" +
@@ -98,6 +108,7 @@ public abstract class Item {
                 ", year=" + year +
                 ", staffId=" + staffId +
                 ", loantime=" + loantime +
+                ", ISBNEAN='" + ISBNEAN + '\'' +
                 ", category=" + category +
                 '}';
     }
