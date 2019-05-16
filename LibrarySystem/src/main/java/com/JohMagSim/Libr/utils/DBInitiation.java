@@ -54,27 +54,21 @@ public class DBInitiation {
 
         // Users table
         createTable("CREATE TABLE IF NOT EXISTS users (\n"
-                + "	id integer PRIMARY KEY,\n"
+                + "	id integer PRIMARY KEY AUTOINCREMENT,\n"
                 + "	fName text NOT NULL,\n"
                 + "	lName text NOT NULL,\n"
                 + "	email text NOT NULL UNIQUE,\n"
                 + "	passwordHash text NOT NULL,\n"
                 + "	passwordResetToken text NOT NULL,\n"
-                + "	userTypeID integer DEFAULT 1,\n"
+                + "	userTypeID integer NOT NULL,\n"
+                + "	booksAtATime integer,\n"
                 + "	staffID integer,\n"
                 + "	FOREIGN KEY (staffID) REFERENCES staff(id) ON DELETE CASCADE \n"
                 + ");", "users");
 
-        // UserType table
-        createTable("CREATE TABLE IF NOT EXISTS usertype (\n"
-                + "	id integer PRIMARY KEY,\n"
-                + "	description text NOT NULL,\n"
-                + "	booksAtATime integer NOT NULL\n"
-                + ");", "userType");
-
         // Staff table
         createTable("CREATE TABLE IF NOT EXISTS staff (\n"
-                + "	id integer PRIMARY KEY,\n"
+                + "	id integer PRIMARY KEY AUTOINCREMENT,\n"
                 + "	manager integer DEFAULT 0\n"
                 + ");", "staff");
 
@@ -83,36 +77,60 @@ public class DBInitiation {
                 + "	id integer PRIMARY KEY AUTOINCREMENT,\n"
                 + " ISBN_EAN text NOT NULL, \n"
                 + "	title text NOT NULL,\n"
+                + "	itemType text NOT NULL,\n"
                 + "	edition integer NOT NULL DEFAULT 1,\n"
                 + "	year integer,\n"
                 + "	staff_id integer,\n"
-                + "	itemCategory_id integer,\n"
-                + "	FOREIGN KEY (staff_id) REFERENCES staff(id) ON DELETE SET NULL, \n"
-                + "	FOREIGN KEY (itemCategory_id) REFERENCES itemCategory(id) ON DELETE SET NULL \n"
+                + "	age_restriction integer,\n"
+                + "	prod_country text,\n"
+                + "	maximumLoanTime integer NOT NULL DEFAULT 14,\n"
+                + "	FOREIGN KEY (staff_id) REFERENCES staff(id) ON DELETE SET NULL\n"
                 + ");", "Item");
 
-        // ItemCategory table
-        createTable("CREATE TABLE IF NOT EXISTS itemCategory (\n"
-                + "	id integer PRIMARY KEY,\n"
-                + "	name text NOT NULL,\n"
-                + "	maximumLoanTime integer NOT NULL DEFAULT 14\n"
-                + ");", "ItemCategory");
+        // Category table
+        createTable("CREATE TABLE IF NOT EXISTS category (\n"
+                + "	id integer PRIMARY KEY AUTOINCREMENT,\n"
+                + "	category text NOT NULL\n"
+                + ");", "category");
 
-        // AuthorArtist table
-        createTable("CREATE TABLE IF NOT EXISTS authorArtist (\n"
-                + "	id integer PRIMARY KEY,\n"
-                + "	fName text NOT NULL,\n"
-                + "	lName text NOT NULL\n"
-                + ");", "authorArtist");
+        // CategoryItem table
+        createTable("CREATE TABLE IF NOT EXISTS category_item (\n"
+                + "	category_id integer NOT NULL,\n"
+                + "	item_id integer NOT NULL,\n"
+                + "	PRIMARY KEY (category_id, item_id), \n"
+                + "	FOREIGN KEY (category_id) REFERENCES category(id) ON DELETE CASCADE, \n"
+                + "	FOREIGN KEY (item_id) REFERENCES item(id) ON DELETE CASCADE \n"
+                + ");", "category_item");
+
+        // Author table
+        createTable("CREATE TABLE IF NOT EXISTS author (\n"
+                + "	id integer PRIMARY KEY AUTOINCREMENT,\n"
+                + "	authorNme text NOT NULL\n"
+                + ");", "author");
 
         // AuthorItem table
         createTable("CREATE TABLE IF NOT EXISTS author_item (\n"
                 + "	author_id integer NOT NULL,\n"
                 + "	item_id integer NOT NULL,\n"
                 + "	PRIMARY KEY (author_id, item_id), \n"
-                + "	FOREIGN KEY (author_id) REFERENCES authorArtist(id) ON DELETE CASCADE, \n"
+                + "	FOREIGN KEY (author_id) REFERENCES author(id) ON DELETE CASCADE, \n"
                 + "	FOREIGN KEY (item_id) REFERENCES item(id) ON DELETE CASCADE \n"
                 + ");", "author_item");
+
+        // Actor table
+        createTable("CREATE TABLE IF NOT EXISTS actor (\n"
+                + "	id integer PRIMARY KEY AUTOINCREMENT,\n"
+                + "	actorName text NOT NULL\n"
+                + ");", "actor");
+
+        // ActorItem table
+        createTable("CREATE TABLE IF NOT EXISTS actor_item (\n"
+                + "	actor_id integer NOT NULL,\n"
+                + "	item_id integer NOT NULL,\n"
+                + "	PRIMARY KEY (actor_id, item_id), \n"
+                + "	FOREIGN KEY (actor_id) REFERENCES actor(id) ON DELETE CASCADE, \n"
+                + "	FOREIGN KEY (item_id) REFERENCES item(id) ON DELETE CASCADE \n"
+                + ");", "actor_item");
 
         // Copy table
         createTable("CREATE TABLE IF NOT EXISTS copy (\n"
@@ -125,25 +143,16 @@ public class DBInitiation {
 
         // Loan table
         createTable("CREATE TABLE IF NOT EXISTS loan (\n"
-                + "	id integer PRIMARY KEY,\n"
+                + "	id integer PRIMARY KEY AUTOINCREMENT,\n"
                 + "	copy_id integer,\n"
                 + "	user_id integer,\n"
                 + "	timeOfCheckout text NOT NULL,\n"
                 + "	timeOfExpectedReturn text,\n"
                 + "	timeOfReturn text,\n"
                 + "	FOREIGN KEY (copy_id) REFERENCES copy(id) ON DELETE CASCADE, \n"
-                + "	FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE \n"
+                + "	FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE \n"
                 + ");", "loan");
 
-        // dvd table
-        createTable("CREATE TABLE IF NOT EXISTS dvd (\n"
-                + "	id integer PRIMARY KEY,\n"
-                + "	item_id integer,\n"
-                + "	age_restriction integer,\n"
-                + "	director text NOT NULL,\n"
-                + "	prod_country text,\n"
-                + "	FOREIGN KEY (item_id) REFERENCES item(id) ON DELETE CASCADE \n"
-                + ");", "dvd");
 
     }
 
