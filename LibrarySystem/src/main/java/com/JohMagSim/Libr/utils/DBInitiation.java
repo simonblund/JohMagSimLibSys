@@ -54,7 +54,7 @@ public class DBInitiation {
 
         // Users table
         createTable("CREATE TABLE IF NOT EXISTS users (\n"
-                + "	id integer PRIMARY KEY,\n"
+                + "	id integer PRIMARY KEY AUTOINCREMENT,\n"
                 + "	fName text NOT NULL,\n"
                 + "	lName text NOT NULL,\n"
                 + "	email text NOT NULL UNIQUE,\n"
@@ -67,14 +67,14 @@ public class DBInitiation {
 
         // UserType table
         createTable("CREATE TABLE IF NOT EXISTS usertype (\n"
-                + "	id integer PRIMARY KEY,\n"
+                + "	id integer PRIMARY KEY AUTOINCREMENT,\n"
                 + "	description text NOT NULL,\n"
                 + "	booksAtATime integer NOT NULL\n"
                 + ");", "userType");
 
         // Staff table
         createTable("CREATE TABLE IF NOT EXISTS staff (\n"
-                + "	id integer PRIMARY KEY,\n"
+                + "	id integer PRIMARY KEY AUTOINCREMENT,\n"
                 + "	manager integer DEFAULT 0\n"
                 + ");", "staff");
 
@@ -95,7 +95,7 @@ public class DBInitiation {
 
         // Category table
         createTable("CREATE TABLE IF NOT EXISTS category (\n"
-                + "	id integer PRIMARY KEY,\n"
+                + "	id integer PRIMARY KEY AUTOINCREMENT,\n"
                 + "	category text NOT NULL\n"
                 + ");", "category");
 
@@ -149,7 +149,7 @@ public class DBInitiation {
 
         // Loan table
         createTable("CREATE TABLE IF NOT EXISTS loan (\n"
-                + "	id integer PRIMARY KEY,\n"
+                + "	id integer PRIMARY KEY AUTOINCREMENT,\n"
                 + "	copy_id integer,\n"
                 + "	user_id integer,\n"
                 + "	timeOfCheckout text NOT NULL,\n"
