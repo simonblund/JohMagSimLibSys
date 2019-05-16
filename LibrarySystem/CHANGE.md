@@ -1,5 +1,9 @@
 # Changelog and descriptions
 
+## 16.05.2019 10:02 MF
+- Added empty LoanControl. No implemented methods, only declaration for methods in class diagram.
+- Added a simple LoanTerminal, preview runs first in App. 
+
 ## 14.05.2019 16:32 MF
 - Updated LoanTest, now working test for insertLoan. 
 - Added method findOverDueLoans in LoanDAO

@@ -27,6 +27,9 @@ public class App
 
         System.out.println( "Hello World!" );
 
+        LoanTerminalFrame frame = new LoanTerminalFrame("Låneterminal");
+        frame.setVisible(true);
+
 
         // Ask if SQL migrations should run.
         System.out.println( "Would you like to run database migrations? Y/N" );
