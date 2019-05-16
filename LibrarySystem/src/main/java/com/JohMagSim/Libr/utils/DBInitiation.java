@@ -60,17 +60,11 @@ public class DBInitiation {
                 + "	email text NOT NULL UNIQUE,\n"
                 + "	passwordHash text NOT NULL,\n"
                 + "	passwordResetToken text NOT NULL,\n"
-                + "	userTypeID integer DEFAULT 1,\n"
+                + "	userTypeID integer NOT NULL,\n"
+                + "	booksAtATime integer,\n"
                 + "	staffID integer,\n"
                 + "	FOREIGN KEY (staffID) REFERENCES staff(id) ON DELETE CASCADE \n"
                 + ");", "users");
-
-        // UserType table
-        createTable("CREATE TABLE IF NOT EXISTS usertype (\n"
-                + "	id integer PRIMARY KEY AUTOINCREMENT,\n"
-                + "	description text NOT NULL,\n"
-                + "	booksAtATime integer NOT NULL\n"
-                + ");", "userType");
 
         // Staff table
         createTable("CREATE TABLE IF NOT EXISTS staff (\n"
@@ -83,7 +77,7 @@ public class DBInitiation {
                 + "	id integer PRIMARY KEY AUTOINCREMENT,\n"
                 + " ISBN_EAN text NOT NULL, \n"
                 + "	title text NOT NULL,\n"
-                + "	type text NOT NULL,\n"
+                + "	itemType text NOT NULL,\n"
                 + "	edition integer NOT NULL DEFAULT 1,\n"
                 + "	year integer,\n"
                 + "	staff_id integer,\n"
