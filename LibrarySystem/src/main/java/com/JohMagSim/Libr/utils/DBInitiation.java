@@ -156,7 +156,7 @@ public class DBInitiation {
                 + "	timeOfExpectedReturn text,\n"
                 + "	timeOfReturn text,\n"
                 + "	FOREIGN KEY (copy_id) REFERENCES copy(id) ON DELETE CASCADE, \n"
-                + "	FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE \n"
+                + "	FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE \n"
                 + ");", "loan");
 
 
