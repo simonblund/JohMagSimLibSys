@@ -11,6 +11,7 @@ public class StaffLogin extends JFrame {
      * THIS IS JUST A TEST
      */
     public void setup(){
+
         add(panel1);
         setTitle("Login for Staff");
         setSize(400,500);
