@@ -83,19 +83,20 @@ public class DBInitiation {
                 + "	id integer PRIMARY KEY AUTOINCREMENT,\n"
                 + " ISBN_EAN text NOT NULL, \n"
                 + "	title text NOT NULL,\n"
+                + "	type text NOT NULL,\n"
                 + "	edition integer NOT NULL DEFAULT 1,\n"
                 + "	year integer,\n"
                 + "	staff_id integer,\n"
-                + "	itemCategory_id integer,\n"
-                + "	FOREIGN KEY (staff_id) REFERENCES staff(id) ON DELETE SET NULL, \n"
-                + "	FOREIGN KEY (itemCategory_id) REFERENCES itemCategory(id) ON DELETE SET NULL \n"
+                + "	age_restriction integer,\n"
+                + "	prod_country text,\n"
+                + "	maximumLoanTime integer NOT NULL DEFAULT 14,\n"
+                + "	FOREIGN KEY (staff_id) REFERENCES staff(id) ON DELETE SET NULL\n"
                 + ");", "Item");
 
         // ItemCategory table
         createTable("CREATE TABLE IF NOT EXISTS itemCategory (\n"
                 + "	id integer PRIMARY KEY,\n"
-                + "	name text NOT NULL,\n"
-                + "	maximumLoanTime integer NOT NULL DEFAULT 14\n"
+                + "	name text NOT NULL\n"
                 + ");", "ItemCategory");
 
         // AuthorArtist table
@@ -140,7 +141,7 @@ public class DBInitiation {
                 + "	id integer PRIMARY KEY,\n"
                 + "	item_id integer,\n"
                 + "	age_restriction integer,\n"
-                + "	director text NOT NULL,\n"
+               // + "	director text NOT NULL,\n"
                 + "	prod_country text,\n"
                 + "	FOREIGN KEY (item_id) REFERENCES item(id) ON DELETE CASCADE \n"
                 + ");", "dvd");
