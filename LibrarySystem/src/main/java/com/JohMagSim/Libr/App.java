@@ -10,12 +10,9 @@ import java.util.*;
 
 /**
  * Hello world!
- *
  */
-public class App 
-{
-    public static void main( String[] args )
-    {
+public class App {
+    public static void main(String[] args) {
         // Set up logger OBS if DEV send string to LibraryLoggerSetup
         try {
             LibraryLogger.setup("dev");
@@ -25,22 +22,22 @@ public class App
         }
 
 
-        System.out.println( "Hello World!" );
+        System.out.println("Hello World!");
 
         LoanTerminalFrame frame = new LoanTerminalFrame("Låneterminal");
         frame.setVisible(true);
 
 
         // Ask if SQL migrations should run.
-        System.out.println( "Would you like to run database migrations? Y/N" );
+        System.out.println("Would you like to run database migrations? Y/N");
         Scanner inp = new Scanner(System.in);
-        if(inp.nextLine().toLowerCase().equals("y")){
+        if (inp.nextLine().toLowerCase().equals("y")) {
             DBInitiation.createTables();
         }
 
         //Ask if you want to show all active loans
-        System.out.println( "Would you like to show all active loans? Y/N" );
-        if(inp.nextLine().toLowerCase().equals("y")){
+        System.out.println("Would you like to show all active loans? Y/N");
+        if (inp.nextLine().toLowerCase().equals("y")) {
             ArrayList loanresult = LoanDAO.findAllActiveLoans();
 
             for (Object loanElement : loanresult) {
@@ -52,13 +49,12 @@ public class App
         mainFrame.setVisible(true);
 
         // Ask if test of db connection  should run.
-        System.out.println( "Would you like to show users? Y/N" );
-        if(inp.nextLine().toLowerCase().equals("y")){
+        System.out.println("Would you like to show users? Y/N");
+        if (inp.nextLine().toLowerCase().equals("y")) {
             ArrayList<User> users = UserDAO.findUsersFromName("Simon", "Blomsterlund");
             System.out.println(users.size());
-            System.out.println(users.get(0).getFirstName() + " " + users.get(0).getFirstName() );
+            System.out.println(users.get(0).getFirstName() + " " + users.get(0).getFirstName());
         }
-
 
 
     }
