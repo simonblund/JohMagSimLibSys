@@ -93,17 +93,25 @@ public class DBInitiation {
                 + "	FOREIGN KEY (staff_id) REFERENCES staff(id) ON DELETE SET NULL\n"
                 + ");", "Item");
 
-        // ItemCategory table
-        createTable("CREATE TABLE IF NOT EXISTS itemCategory (\n"
+        // Category table
+        createTable("CREATE TABLE IF NOT EXISTS category (\n"
                 + "	id integer PRIMARY KEY,\n"
-                + "	name text NOT NULL\n"
-                + ");", "ItemCategory");
+                + "	category text NOT NULL\n"
+                + ");", "category");
+
+        // CategoryItem table
+        createTable("CREATE TABLE IF NOT EXISTS category_item (\n"
+                + "	category_id integer NOT NULL,\n"
+                + "	item_id integer NOT NULL,\n"
+                + "	PRIMARY KEY (category_id, item_id), \n"
+                + "	FOREIGN KEY (category_id) REFERENCES category(id) ON DELETE CASCADE, \n"
+                + "	FOREIGN KEY (item_id) REFERENCES item(id) ON DELETE CASCADE \n"
+                + ");", "category_item");
 
         // Author table
         createTable("CREATE TABLE IF NOT EXISTS author (\n"
-                + "	id integer PRIMARY KEY,\n"
-                + "	fName text NOT NULL,\n"
-                + "	lName text NOT NULL\n"
+                + "	id integer PRIMARY KEY AUTOINCREMENT,\n"
+                + "	authorNme text NOT NULL\n"
                 + ");", "author");
 
         // AuthorItem table
@@ -114,6 +122,21 @@ public class DBInitiation {
                 + "	FOREIGN KEY (author_id) REFERENCES author(id) ON DELETE CASCADE, \n"
                 + "	FOREIGN KEY (item_id) REFERENCES item(id) ON DELETE CASCADE \n"
                 + ");", "author_item");
+
+        // Actor table
+        createTable("CREATE TABLE IF NOT EXISTS actor (\n"
+                + "	id integer PRIMARY KEY AUTOINCREMENT,\n"
+                + "	actorName text NOT NULL\n"
+                + ");", "actor");
+
+        // ActorItem table
+        createTable("CREATE TABLE IF NOT EXISTS actor_item (\n"
+                + "	actor_id integer NOT NULL,\n"
+                + "	item_id integer NOT NULL,\n"
+                + "	PRIMARY KEY (actor_id, item_id), \n"
+                + "	FOREIGN KEY (actor_id) REFERENCES actor(id) ON DELETE CASCADE, \n"
+                + "	FOREIGN KEY (item_id) REFERENCES item(id) ON DELETE CASCADE \n"
+                + ");", "actor_item");
 
         // Copy table
         createTable("CREATE TABLE IF NOT EXISTS copy (\n"
