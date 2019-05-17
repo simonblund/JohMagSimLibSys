@@ -83,24 +83,10 @@ public class DBInitiation {
                 + "	staff_id integer,\n"
                 + "	age_restriction integer,\n"
                 + "	prod_country text,\n"
+                + "	category text,\n"
                 + "	maximumLoanTime integer NOT NULL DEFAULT 14,\n"
                 + "	FOREIGN KEY (staff_id) REFERENCES staff(id) ON DELETE SET NULL\n"
                 + ");", "Item");
-
-        // Category table
-        createTable("CREATE TABLE IF NOT EXISTS category (\n"
-                + "	id integer PRIMARY KEY AUTOINCREMENT,\n"
-                + "	category text NOT NULL\n"
-                + ");", "category");
-
-        // CategoryItem table
-        createTable("CREATE TABLE IF NOT EXISTS category_item (\n"
-                + "	category_id integer NOT NULL,\n"
-                + "	item_id integer NOT NULL,\n"
-                + "	PRIMARY KEY (category_id, item_id), \n"
-                + "	FOREIGN KEY (category_id) REFERENCES category(id) ON DELETE CASCADE, \n"
-                + "	FOREIGN KEY (item_id) REFERENCES item(id) ON DELETE CASCADE \n"
-                + ");", "category_item");
 
         // Author table
         createTable("CREATE TABLE IF NOT EXISTS author (\n"
