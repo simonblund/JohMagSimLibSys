@@ -27,7 +27,8 @@ public class LoanTest {
         user.setPasswordResetToken("123123123");
 
         //testCopy
-        Copy copy = new Copy(1, "TestBok", 1234, "TestHylla", "Testklass", 3, false);
+        Copy copy = new Copy(0, 0, 0);
+
 
         //testLoan
         LocalDate today = LocalDate.now();
@@ -67,8 +68,6 @@ public class LoanTest {
 
         LoanDAO.updateReturnDateOnLoan(loan);
 
-        System.out.println(loan);
-
         ArrayList loanResult = LoanDAO.findAllLoans();
 
         Loan dbLoan = (Loan) loanResult.get(0);
@@ -83,11 +82,9 @@ public class LoanTest {
     @Test
     public void testUpdateExpectedReturnDate(){
         Loan loan = testLoan();
-        loan.setLoanID(7);
+        loan.setLoanID(2);
 
         LoanDAO.updateExpectedReturnDateOnLoan(loan, "2019-01-02");
-
-        System.out.println(loan);
 
         ArrayList loanResult = LoanDAO.findAllLoans();
 
