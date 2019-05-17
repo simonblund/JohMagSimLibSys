@@ -20,7 +20,7 @@ public class DVDItemDAOTest {
     public List<String> testcreateTestActors() {
         ArrayList<String> actors = new ArrayList<>();
         actors.add("Dustin Hoffman");
-        actors.add("Joaqin Phoenix");
+        actors.add("Joaquin Phoenix");
         return actors;
     }
 
@@ -29,13 +29,7 @@ public class DVDItemDAOTest {
         DVDItem test = testDVDitem1();
         DVDItemDAO.createDVDItem(test);
     }
-
-    @Test
-    public void actorSaveTest() {
-        ArrayList actors = (ArrayList) testcreateTestActors();
-        DVDItemDAO.createDVDActor(actors);
-
-    }
+    
     }
 
 
