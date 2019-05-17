@@ -84,39 +84,11 @@ public class DBInitiation {
                 + "	age_restriction integer,\n"
                 + "	prod_country text,\n"
                 + "	category text,\n"
+                + "	actors text,\n"
+                + "	authors text,\n"
                 + "	maximumLoanTime integer NOT NULL DEFAULT 14,\n"
                 + "	FOREIGN KEY (staff_id) REFERENCES staff(id) ON DELETE SET NULL\n"
                 + ");", "Item");
-
-        // Author table
-        createTable("CREATE TABLE IF NOT EXISTS author (\n"
-                + "	id integer PRIMARY KEY AUTOINCREMENT,\n"
-                + "	authorNme text NOT NULL\n"
-                + ");", "author");
-
-        // AuthorItem table
-        createTable("CREATE TABLE IF NOT EXISTS author_item (\n"
-                + "	author_id integer NOT NULL,\n"
-                + "	item_id integer NOT NULL,\n"
-                + "	PRIMARY KEY (author_id, item_id), \n"
-                + "	FOREIGN KEY (author_id) REFERENCES author(id) ON DELETE CASCADE, \n"
-                + "	FOREIGN KEY (item_id) REFERENCES item(id) ON DELETE CASCADE \n"
-                + ");", "author_item");
-
-        // Actor table
-        createTable("CREATE TABLE IF NOT EXISTS actor (\n"
-                + "	id integer PRIMARY KEY AUTOINCREMENT,\n"
-                + "	actorName text NOT NULL\n"
-                + ");", "actor");
-
-        // ActorItem table
-        createTable("CREATE TABLE IF NOT EXISTS actor_item (\n"
-                + "	actor_id integer NOT NULL,\n"
-                + "	item_id integer NOT NULL,\n"
-                + "	PRIMARY KEY (actor_id, item_id), \n"
-                + "	FOREIGN KEY (actor_id) REFERENCES actor(id) ON DELETE CASCADE, \n"
-                + "	FOREIGN KEY (item_id) REFERENCES item(id) ON DELETE CASCADE \n"
-                + ");", "actor_item");
 
         // Copy table
         createTable("CREATE TABLE IF NOT EXISTS copy (\n"
