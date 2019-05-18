@@ -8,6 +8,16 @@ public class Copy {
     private int state; //Enum? Skulle kunna vara Enum i .java
     // och int i SQLLite då SQLLite inte kan hantera Enum
 
+
+    public Copy(int itemID, int barCode, int state) {
+        this.itemID = itemID;
+        this.barCode = barCode;
+        this.state = state;
+    }
+
+    public Copy() {
+    }
+
     public int getId() {
         return id;
     }
