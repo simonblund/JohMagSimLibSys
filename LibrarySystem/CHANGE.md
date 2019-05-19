@@ -1,8 +1,13 @@
 # Changelog and descriptions
 
+## 19.05.2019 19:26 SB
+- Added signinuserpanel.
+- Tip, to use the same window for panels look at the implementation of Mainframe in homepanel and signinpanel.
+- HomePanel LOCKED by itemDAO for paperItem.
+
 ## 16.05.2019 10:02 MF
 - Added empty LoanControl. No implemented methods, only declaration for methods in class diagram.
-- Added a simple LoanTerminal, preview runs first in App. 
+- Added a simple LoanTerminal, preview runs first in App.
 
 ## 14.05.2019 16:32 MF
 - Updated LoanTest, now working test for insertLoan. 
