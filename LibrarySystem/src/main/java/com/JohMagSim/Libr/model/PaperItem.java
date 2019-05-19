@@ -6,7 +6,7 @@ public class PaperItem extends Item {
 
     private List<String> authors;
 
-    public PaperItem(String title, String location, String type, int edition, int year, int staffId, int loantime, String ISBNEAN, String category, List<String> authors) {
+    public PaperItem(String title, String location, String type, int edition, int year, int staffId, int loantime, String ISBNEAN, List<String> category, List<String> authors) {
         super(title, location, type, edition, year, staffId, loantime, ISBNEAN, category);
         this.authors = authors;
     }

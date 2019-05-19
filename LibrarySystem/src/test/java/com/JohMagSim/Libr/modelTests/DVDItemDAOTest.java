@@ -9,7 +9,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class DVDItemDAOTest {
-
+    /*
     public DVDItem testDVDitem1() {
         DVDItem dvdItem = new DVDItem("En film", "A1", "DVD", 1,
                 2016, 1, 14, "12121212", "Drama", "Sweden", 15, testcreateTestActors());
@@ -29,6 +29,8 @@ public class DVDItemDAOTest {
         DVDItem test = testDVDitem1();
         DVDItemDAO.createDVDItem(test);
     }
+
+     */
     
     }
 

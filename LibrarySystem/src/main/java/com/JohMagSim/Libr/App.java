@@ -27,6 +27,9 @@ public class App {
         LoanTerminalFrame frame = new LoanTerminalFrame("Låneterminal");
         frame.setVisible(true);
 
+        MainFrame mainFrame = new MainFrame("LibrarySys");
+        mainFrame.setVisible(true);
+
 
         // Ask if SQL migrations should run.
         System.out.println("Would you like to run database migrations? Y/N");
@@ -45,8 +48,7 @@ public class App {
             }
         }
 
-        MainFrame mainFrame = new MainFrame("LibrarySys");
-        mainFrame.setVisible(true);
+
 
         // Ask if test of db connection  should run.
         System.out.println("Would you like to show users? Y/N");

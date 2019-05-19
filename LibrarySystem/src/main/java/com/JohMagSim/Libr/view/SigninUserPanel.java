@@ -6,14 +6,13 @@ import com.JohMagSim.Libr.utils.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.*;
 import java.util.List;
+import java.util.*;
 
-public class HomePanel extends JPanel {
-    //@TODO Make search work and connect to itemDAO.
+public class SigninUserPanel extends JPanel {
 
 
-    public HomePanel(){
+    public SigninUserPanel(){
         // Declares that the panel uses borderlayout to be able to use north south etc
         setLayout(new BorderLayout());
 
@@ -23,7 +22,7 @@ public class HomePanel extends JPanel {
         JPanel resultPanel = new JPanel();
         resultPanel.setLayout(new BorderLayout());
         resultPanel.setBackground(ViewProperties.primaryColorLight);
-        JLabel label = new JLabel("Search for book");
+        JLabel label = new JLabel("USER book");
         JLabel noResults = new JLabel("No results");
         JTextField search = new JTextField(10); // accepts upto 10 characters
         JButton searchButton = new JButton("Search");
@@ -49,33 +48,7 @@ public class HomePanel extends JPanel {
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //PaperItemDAO
 
-                // Simulated list below
-                DefaultListModel listModel = new DefaultListModel();
-                e.getActionCommand();
-                ArrayList<Item> items = new ArrayList();
-                List<String> categories = new ArrayList();
-                categories.add("Thriller");
-                categories.add("Drama");
-
-                List authors = new ArrayList();
-                authors.add("Steven Hawking");
-
-                items.add(new PaperItem("Harry Potter 2", "LB23", "Book", 3, 2019, 1, 14, "141414141414", categories, authors));
-
-                if (items.size()<1){
-                    resultPanel.add(BorderLayout.CENTER, noResults);
-                    updateUI();
-                } else {
-                    for(int i =0; i<items.size();i++){
-                        listModel.addElement(items.get(i).getTitle()+" "+ items.get(i).getYear());
-
-                    }
-                    itemList.setModel(listModel);
-                    resultPanel.add(BorderLayout.CENTER, itemList);
-                    updateUI();
-                }
 
             }
         });
