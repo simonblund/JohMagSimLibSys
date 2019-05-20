@@ -16,7 +16,7 @@ public class AuthControl {
      */
 
     //@TODO Should insert exception handling.
-    public static User signIn(String email, String passwordInput){
+    public static User signIn(String email, String passwordInput)throws Exception{
         User user = UserDAO.findUserFromEmail(email);
         String BCryptHashString = BCrypt.withDefaults().hashToString(12, passwordInput.toCharArray());
         if(BCrypt.verifyer().verify(user.getPasswordHash().toCharArray(), BCryptHashString).verified){
@@ -24,7 +24,21 @@ public class AuthControl {
         } else{
             user = null;
             LOGGER.info("User password did not match.");
+            //throw new Exception("User password no matchy matchy");
             return user;
+        }
+    }
+
+    public static boolean checkEmailExists(String email){
+        User user = null;
+        try{
+            user= UserDAO.findUserFromEmail(email);
+            if(user.getEmail().equals(email)){
+                return true;
+            }
+            else {return false;}
+        } catch (Exception e){
+            return false;
         }
     }
 }

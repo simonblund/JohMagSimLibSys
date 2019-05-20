@@ -1,5 +1,7 @@
 package com.JohMagSim.Libr.view;
 
+import com.JohMagSim.Libr.*;
+import com.JohMagSim.Libr.controller.*;
 import com.JohMagSim.Libr.model.*;
 import com.JohMagSim.Libr.utils.*;
 
@@ -52,6 +54,7 @@ public class SigninUserPanel extends JPanel {
 
         JButton signInButton = new JButton("Sign in");
 
+
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.gridwidth = 2;
@@ -97,11 +100,35 @@ public class SigninUserPanel extends JPanel {
         ActionListener signInButtonPressed = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Thread thread = new Thread();
-                thread.
+                User user;
+                String email = emailField.getText();
+                String password = passwordField.getPassword().toString();
+                Thread thread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (AuthControl.checkEmailExists(email)) {
+                            try{
+                                App.signedInUser = AuthControl.signIn(email, password);
+                                System.out.println("Worked");
+                            }
+                            catch (Exception b){
+                                emailField.setToolTipText(b.getMessage());
+                                System.out.println("Nomatch");
+                            }
 
+                        } else{
+                            emailField.setToolTipText("Email & Password no matchy matchy");
+                            System.out.println("noaccount");
+                        }
+
+                    }
+                });
+                thread.run();
+                //try{thread.join();} catch (InterruptedException a){System.out.println("Huehr"+a);};
+                updateUI();
             }
         };
+        signInButton.addActionListener(signInButtonPressed);
         /*
         searchButton.addActionListener(new ActionListener() {
             @Override

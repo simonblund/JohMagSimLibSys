@@ -12,6 +12,7 @@ import java.util.*;
  * Hello world!
  */
 public class App {
+    public static User signedInUser;
     public static void main(String[] args) {
         // Set up logger OBS if DEV send string to LibraryLoggerSetup
         try {

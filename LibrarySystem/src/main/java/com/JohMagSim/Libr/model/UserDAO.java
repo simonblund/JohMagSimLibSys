@@ -17,7 +17,7 @@ public class UserDAO {
      * @param lastName string
      * @return arrayList of Users containing fname,lname, email and id.
      */
-    public static ArrayList<User> findUsersFromName(String firstName, String lastName){
+    public static ArrayList<User> findUsersFromName(String firstName, String lastName)throws Exception{
         Connection conn = DBConnection.getConnection();
         String sql = "SELECT * FROM users WHERE fName LIKE ? AND lName LIKE ?;";
         ResultSet rs = null;
@@ -28,14 +28,20 @@ public class UserDAO {
             pstmt.setString(2, lastName);
             rs = pstmt.executeQuery();
 
-                while(rs.next()){
+            //start new code
+            if (!rs.next() ) {
+                new Exception("No user found");
+            } else {
+                do {
                     User user = new User();
                     user.setId(rs.getInt("id"));
                     user.setFirstName(rs.getString("fName"));
                     user.setLastName(rs.getString("lName"));
                     user.setEmail(rs.getString("email"));
                     result.add(user);
-                }
+                } while (rs.next());
+            }
+            // end new code
 
         } catch (SQLException e){
             LOGGER.severe("findUsersFromName " +e.getMessage());
@@ -50,24 +56,29 @@ public class UserDAO {
      * @param id
      * @return
      */
-    public static User findUserFromId(int id){
+    public static User findUserFromId(int id) throws Exception{
         Connection conn = DBConnection.getConnection();
         String sql = "SELECT * FROM users WHERE id = ? ;";
         ResultSet rs = null;
         User result = null;
-        // TODO: 05-05-2019 Should probably check what happens if user does not exist in db.
         try{
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, id);
             rs = pstmt.executeQuery();
-
-            // Create user from the result.
-            User user = new User();
-            user.setId(rs.getInt("id"));
-            user.setFirstName(rs.getString("fName"));
-            user.setLastName(rs.getString("lName"));
-            user.setEmail(rs.getString("email"));
-            result = user;
+            //start new code
+            if (!rs.next() ) {
+                new Exception("No user found");
+            } else {
+                User user = new User();
+                do {
+                    user.setId(rs.getInt("id"));
+                    user.setFirstName(rs.getString("fName"));
+                    user.setLastName(rs.getString("lName"));
+                    user.setEmail(rs.getString("email"));
+                } while (rs.next());
+                result = user; // Since only one result is waited, this should work.
+            }
+           // end new code
 
         } catch (SQLException e){
             LOGGER.severe("findUserFromId " +e.getMessage());
@@ -83,7 +94,7 @@ public class UserDAO {
      * @param email
      * @return
      */
-    public static User findUserFromEmail(String email){
+    public static User findUserFromEmail(String email) throws Exception{
         Connection conn = DBConnection.getConnection();
         String sql = "SELECT * FROM users WHERE email = ? ;";
         ResultSet rs = null;
@@ -93,14 +104,22 @@ public class UserDAO {
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, email);
             rs = pstmt.executeQuery();
+            if (!rs.next() ) {
+                new Exception("No user found");
+            } else {
+                User user = new User();
+                do {
+                    user.setId(rs.getInt("id"));
+                    user.setFirstName(rs.getString("fName"));
+                    user.setLastName(rs.getString("lName"));
+                    user.setEmail(rs.getString("email"));
+                } while (rs.next());
+                result = user; // Since only one result is waited, this should work.
+            }
 
             // Create user from the result.
-            User user = new User();
-            user.setId(rs.getInt("id"));
-            user.setFirstName(rs.getString("fName"));
-            user.setLastName(rs.getString("lName"));
-            user.setEmail(rs.getString("email"));
-            result = user;
+
+
 
         } catch (SQLException e){
             LOGGER.severe("findUserFromId " +e.getMessage());
