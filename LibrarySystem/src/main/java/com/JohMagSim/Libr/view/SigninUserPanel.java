@@ -18,26 +18,75 @@ public class SigninUserPanel extends JPanel {
 
 
         //Creating the panel at bottom and adding components
-        JPanel panel = new JPanel(); // the panel is not visible in output
-        JPanel resultPanel = new JPanel();
-        resultPanel.setLayout(new BorderLayout());
-        resultPanel.setBackground(ViewProperties.primaryColorLight);
-        JLabel label = new JLabel("USER book");
-        JLabel noResults = new JLabel("No results");
-        JTextField search = new JTextField(10); // accepts upto 10 characters
-        JButton searchButton = new JButton("Search");
-        JList itemList = new JList(){};
-        panel.add(label); // Components Added using Flow Layout
-        panel.add(label); // Components Added using Flow Layout
-        panel.add(search);
-        panel.add(searchButton);
+        JSplitPane splitPanel = new JSplitPane();
+
+        JPanel panelLeft = new JPanel(); // the panel is not visible in output
+        panelLeft.setLayout(new BorderLayout());
+        panelLeft.setBackground(ViewProperties.primaryColor);
+        panelLeft.setVisible(true);
+
+        JPanel panelRight = new JPanel();
+        panelRight.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+
+        panelRight.setBackground(ViewProperties.primaryColorLight);
+        panelRight.setVisible(true);
+
+        splitPanel.add(JSplitPane.LEFT, panelLeft);
+        splitPanel.add(JSplitPane.RIGHT, panelRight);
+
+        JLabel textLeft = new JLabel("Sign in");
+        JButton signInStaff = new JButton("Staff sign in");
+
+        panelLeft.add(BorderLayout.CENTER,textLeft);
+        panelLeft.add(BorderLayout.SOUTH, signInStaff);
+
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+
+
+        JLabel email = new JLabel("email");
+        JLabel password = new JLabel("Password");
+
+        JTextField emailField = new JTextField();
+        JPasswordField passwordField = new JPasswordField();
+
+        JButton signInButton = new JButton("Sign in");
+
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        gbc.weightx = 0.5;
+        panelRight.add(email,gbc);
+
+        gbc.gridx = 2;
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        gbc.weightx = 0.5;
+        gbc.insets=new Insets(10,0,0,0);
+        panelRight.add(emailField, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.gridwidth = 2;
+        gbc.weightx = 0.5;
+        panelRight.add(password,gbc);
+
+        gbc.gridx = 2;
+        gbc.gridy = 1;
+        gbc.gridwidth = 2;
+        gbc.weightx = 0.5;
+        panelRight.add(passwordField,gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 2;
+        gbc.gridwidth = 4;
+        gbc.weightx = 0.5;
+        panelRight.add(signInButton,gbc);
+
 
         // Text Area at the Center
 
-
-        //Adding Components to the frame.
-        add(BorderLayout.NORTH, panel);
-        add(BorderLayout.CENTER, resultPanel);
+        add(BorderLayout.CENTER, splitPanel);
         setVisible(true);
         setBackground(ViewProperties.primaryColorLight);
 
@@ -45,6 +94,15 @@ public class SigninUserPanel extends JPanel {
 
         // Actions
 
+        ActionListener signInButtonPressed = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Thread thread = new Thread();
+                thread.
+
+            }
+        };
+        /*
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -52,6 +110,8 @@ public class SigninUserPanel extends JPanel {
 
             }
         });
+
+         */
     }
 
 
