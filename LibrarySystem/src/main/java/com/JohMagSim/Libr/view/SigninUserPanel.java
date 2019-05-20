@@ -109,15 +109,15 @@ public class SigninUserPanel extends JPanel {
                         if (AuthControl.checkEmailExists(email)) {
                             try{
                                 App.signedInUser = AuthControl.signIn(email, password);
-                                System.out.println("Worked");
                             }
                             catch (Exception b){
-                                emailField.setToolTipText(b.getMessage());
+                                emailField.setBackground(Color.red);
                                 System.out.println("Nomatch");
                             }
 
                         } else{
                             emailField.setToolTipText("Email & Password no matchy matchy");
+                            emailField.setBackground(Color.red);
                             System.out.println("noaccount");
                         }
 

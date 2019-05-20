@@ -55,14 +55,11 @@ public class HomePanel extends JPanel {
                 DefaultListModel listModel = new DefaultListModel();
                 e.getActionCommand();
                 ArrayList<Item> items = new ArrayList();
-                List<String> categories = new ArrayList();
-                categories.add("Thriller");
-                categories.add("Drama");
 
                 List authors = new ArrayList();
                 authors.add("Steven Hawking");
 
-                items.add(new PaperItem("Harry Potter 2", "LB23", "Book", 3, 2019, 1, 14, "141414141414", categories, authors));
+                items.add(new PaperItem("Harry Potter 2", "LB23", "Book", 3, 2019, 1, 14, "141414141414", "example", authors));
 
                 if (items.size()<1){
                     resultPanel.add(BorderLayout.CENTER, noResults);
