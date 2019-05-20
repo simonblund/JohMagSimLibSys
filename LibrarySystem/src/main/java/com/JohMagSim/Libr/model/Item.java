@@ -1,7 +1,5 @@
 package com.JohMagSim.Libr.model;
 
-import java.util.List;
-
 public abstract class Item {
 
     private String title;
