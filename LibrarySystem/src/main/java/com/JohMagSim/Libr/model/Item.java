@@ -1,7 +1,5 @@
 package com.JohMagSim.Libr.model;
 
-import java.util.List;
-
 public abstract class Item {
 
     private String title;
@@ -12,9 +10,11 @@ public abstract class Item {
     private int staffId;
     private int loantime;
     private String ISBNEAN;
-    private List<String> category;
+    private String category; //genre for DVD:s or subject for paper items
+    private int id;
 
-    public Item(String title, String location, String type, int edition, int year, int staffId, int loantime, String ISBNEAN, List<String> category) {
+    //Constructor without id
+    public Item(String title, String location, String type, int edition, int year, int staffId, int loantime, String ISBNEAN, String category) {
         this.title = title;
         this.location = location;
         this.type = type;
@@ -24,6 +24,17 @@ public abstract class Item {
         this.loantime = loantime;
         this.ISBNEAN = ISBNEAN;
         this.category = category;
+    }
+    //Constructor with id
+    public Item() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -82,11 +93,11 @@ public abstract class Item {
         this.loantime = loantime;
     }
 
-    public List<String> getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(List<String> category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 
@@ -109,7 +120,8 @@ public abstract class Item {
                 ", staffId=" + staffId +
                 ", loantime=" + loantime +
                 ", ISBNEAN='" + ISBNEAN + '\'' +
-                ", category=" + category +
+                ", category='" + category + '\'' +
+                ", id=" + id +
                 '}';
     }
 }
