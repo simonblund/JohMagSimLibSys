@@ -13,6 +13,7 @@ public abstract class Item {
     private String category; //genre for DVD:s or subject for paper items
     private int id;
 
+    //Constructor without id
     public Item(String title, String location, String type, int edition, int year, int staffId, int loantime, String ISBNEAN, String category) {
         this.title = title;
         this.location = location;
@@ -23,9 +24,6 @@ public abstract class Item {
         this.loantime = loantime;
         this.ISBNEAN = ISBNEAN;
         this.category = category;
-    }
-
-    public Item() {
     }
 
     public int getId() {
