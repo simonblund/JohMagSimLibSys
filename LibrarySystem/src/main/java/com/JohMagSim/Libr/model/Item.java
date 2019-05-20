@@ -25,6 +25,9 @@ public abstract class Item {
         this.ISBNEAN = ISBNEAN;
         this.category = category;
     }
+    //Constructor with id
+    public Item() {
+    }
 
     public int getId() {
         return id;

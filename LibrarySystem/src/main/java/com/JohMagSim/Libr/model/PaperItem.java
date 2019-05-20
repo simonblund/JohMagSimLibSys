@@ -4,13 +4,19 @@ import java.util.List;
 
 public class PaperItem extends Item {
 
-private List<String> authors;
+    private List<String> authors;
 
-//constructor without itemid
-    public PaperItem(String title, String location, String type, int edition, int year, int staffId, int loantime, String ISBNEAN, String category, List<String> authors) {
+    //constructor without itemid
+   public PaperItem(String title, String location, String type, int edition, int year, int staffId, int loantime, String ISBNEAN, String category, List<String> authors) {
         super(title, location, type, edition, year, staffId, loantime, ISBNEAN, category);
         this.authors = authors;
     }
+
+    //constructor with id
+    public PaperItem(List<String> authors) {
+        this.authors = authors;
+    }
+
 
     public List<String> getAuthors() {
         return authors;
