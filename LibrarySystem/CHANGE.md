@@ -1,5 +1,9 @@
 # Changelog and descriptions
 
+## 20.05.2019 JN
+-Item, DVDItem och paperItem updated
+-DBInitiation - location added on Item
+
 ## 19.05.2019 19:26 SB
 - Added signinuserpanel.
 - Tip, to use the same window for panels look at the implementation of Mainframe in homepanel and signinpanel.
