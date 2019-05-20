@@ -84,6 +84,7 @@ public class DBInitiation {
                 + "	age_restriction integer,\n"
                 + "	prod_country text,\n"
                 + "	category text,\n"
+                + "	location text,\n"
                 + "	actors text,\n"
                 + "	authors text,\n"
                 + "	maximumLoanTime integer NOT NULL DEFAULT 14,\n"
