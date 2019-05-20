@@ -112,13 +112,13 @@ public class SigninUserPanel extends JPanel {
                             }
                             catch (Exception b){
                                 emailField.setBackground(Color.red);
-                                System.out.println("Nomatch");
+                                passwordField.setBackground(Color.red);
                             }
 
                         } else{
                             emailField.setToolTipText("Email & Password no matchy matchy");
                             emailField.setBackground(Color.red);
-                            System.out.println("noaccount");
+                            passwordField.setBackground(Color.red);
                         }
 
                     }
