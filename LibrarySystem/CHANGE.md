@@ -1,5 +1,12 @@
 # Changelog and descriptions
 
+
+## 21.05.2019 SB 18:06
+- Changed authentication library (encryption library to jscrp
+- AuthController all methods working
+- User sign in working.
+- UserDAO updated to correlate with db changes.
+
 ## 21.05.2019 JN
 -DVDItemDAO updated with finding methods and DVDitemDAOtest updated with diffrent cases. DVDitemDAOtest is under construction
 
