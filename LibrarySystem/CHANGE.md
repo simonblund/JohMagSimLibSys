@@ -1,6 +1,9 @@
 # Changelog and descriptions
 
 ## 21.05.2019 JN
+-DVDItemDAO, PaperItemDAO updated. DVDItemDAOtest updated. PaperItemTest created.
+
+## 21.05.2019 JN
 -Item, DVDItem och paperItem updated
 
 ## 20.05.2019 18:20 SB
