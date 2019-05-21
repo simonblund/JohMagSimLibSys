@@ -1,6 +1,9 @@
 # Changelog and descriptions
 
 ## 21.05.2019 JN
+-DVDItemDAO updated with delete and update methods
+
+## 21.05.2019 JN
 -DVDItemDAO, PaperItemDAO updated. DVDItemDAOtest updated. PaperItemTest created.
 
 ## 21.05.2019 JN
