@@ -7,15 +7,15 @@ public class DVDItem extends Item {
     private int ageRestriction;
     private List<String> actors;
 
-//constructor without id
-   public DVDItem(String title, String location, String type, int edition, int year, int staffId, int loantime, String ISBNEAN, String category, String prodCountry, int ageRestriction, List<String> actors) {
+    //constructor without id
+    public DVDItem(String title, String location, String type, int edition, int year, int staffId, int loantime, String ISBNEAN, String category, String prodCountry, int ageRestriction, List<String> actors) {
         super(title, location, type, edition, year, staffId, loantime, ISBNEAN, category);
         this.prodCountry = prodCountry;
         this.ageRestriction = ageRestriction;
         this.actors = actors;
     }
 
-    //Construktor med id
+    //Construktor with id
     public DVDItem() {
     }
 
@@ -45,7 +45,8 @@ public class DVDItem extends Item {
 
     @Override
     public String toString() {
-        return "DVDItem{" +
+
+        return super.toString() + "DVDItem{" +
                 "prodCountry='" + prodCountry + '\'' +
                 ", ageRestriction=" + ageRestriction +
                 ", actors=" + actors +
