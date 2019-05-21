@@ -9,10 +9,7 @@ public class StaffTest {
     private Staff staffmemberfromdb;
     public Staff createStaff(){
 
-        UserType ut = new UserType();
-        ut.setId(21);
-        ut.setDescription("Staff");
-        ut.setBooksAtATime(5);
+
 
         staffmember = new Staff();
         staffmember.setFirstName("Personalett");
@@ -21,7 +18,7 @@ public class StaffTest {
         staffmember.setPasswordHash("123123");
         staffmember.setPasswordResetToken("123123");
         staffmember.setManager(false);
-        staffmember.setUsertype(ut);
+        staffmember.setUserTypeID(1);
 
         return staffmember;
     }

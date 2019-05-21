@@ -1,5 +1,6 @@
 package com.JohMagSim.Libr.view;
 
+import com.JohMagSim.Libr.*;
 import com.JohMagSim.Libr.utils.*;
 
 import javax.swing.*;
@@ -20,24 +21,31 @@ public class MainFrame extends JFrame {
         JMenuBar mb = new JMenuBar();
         JMenu m1 = new JMenu("FILE");
         JMenu m2 = new JMenu("Help");
-        JMenu m3 = new JMenu("Sign in");
+
         mb.add(m1);
         mb.add(m2);
+        if(App.signedInUser==null){
+            JMenu m3 = new JMenu("Sign in");
+            m3.addMenuListener(new MenuListener() {
+                public void menuSelected(MenuEvent e) {
+                    homePanel.setVisible(false);
+                    add(BorderLayout.CENTER, signinUserPanel);
+
+                }
+                public void menuDeselected(MenuEvent event){}
+                public void menuCanceled(MenuEvent e){}
+            });
+            mb.add(m3);
+        } else {
+            JMenu m4 = new JMenu("Sign out");
+            mb.add(m4);
+        }
 
         homePanel = new HomePanel();
         signinUserPanel = new SigninUserPanel();
         add(BorderLayout.CENTER, homePanel);
 
-        m3.addMenuListener(new MenuListener() {
-            public void menuSelected(MenuEvent e) {
-                homePanel.setVisible(false);
-                add(BorderLayout.CENTER, signinUserPanel);
 
-            }
-            public void menuDeselected(MenuEvent event){}
-            public void menuCanceled(MenuEvent e){}
-        });
-        mb.add(m3);
 
         add(BorderLayout.NORTH, mb);
 

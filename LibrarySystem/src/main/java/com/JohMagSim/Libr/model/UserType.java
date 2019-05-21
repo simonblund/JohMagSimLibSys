@@ -2,6 +2,8 @@ package com.JohMagSim.Libr.model;
 
 public class UserType {
     private int id;
+    private String description;
+    private int booksAtATime;
 
     public int getId() {
         return id;
@@ -27,6 +29,5 @@ public class UserType {
         this.booksAtATime = booksAtATime;
     }
 
-    private String description;
-    private int booksAtATime;
+
 }

@@ -136,7 +136,7 @@ public class StaffDAO {
             pstmt.setString(3, user.getEmail());
             pstmt.setString(4, user.getPasswordHash());
             pstmt.setString(5, user.getPasswordResetToken());
-            pstmt.setInt(6, user.getUsertype().getId());
+            pstmt.setInt(6, user.getUserTypeID());
 
 
             pstmt_staff.executeUpdate();
@@ -191,7 +191,7 @@ public class StaffDAO {
             pstmt.setString(1, user.getFirstName());
             pstmt.setString(2, user.getLastName());
             pstmt.setString(3, user.getEmail());
-            pstmt.setInt(4, user.getUsertype().getId());
+            pstmt.setInt(4, user.getUserTypeID());
             pstmt.setInt(5, user.getId());
 
             pstmt.executeUpdate();

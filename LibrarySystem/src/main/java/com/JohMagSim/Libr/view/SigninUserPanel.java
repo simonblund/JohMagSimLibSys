@@ -100,9 +100,8 @@ public class SigninUserPanel extends JPanel {
         ActionListener signInButtonPressed = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                User user;
                 String email = emailField.getText();
-                String password = passwordField.getPassword().toString();
+                char[] password = passwordField.getPassword();
                 Thread thread = new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -124,7 +123,6 @@ public class SigninUserPanel extends JPanel {
                     }
                 });
                 thread.run();
-                //try{thread.join();} catch (InterruptedException a){System.out.println("Huehr"+a);};
                 updateUI();
             }
         };

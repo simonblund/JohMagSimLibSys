@@ -20,12 +20,9 @@ public class UserTest {
         user.setPasswordHash("123123");
         user.setPasswordResetToken("123123123");
         // Create an usertype
-        UserType usertype = new UserType();
-        usertype.setBooksAtATime(5);
-        usertype.setDescription("Testusertype");
-        usertype.setId(21);
 
-        user.setUsertype(usertype);
+
+        user.setUserTypeID(1);
 
         return user;
     }

@@ -38,6 +38,8 @@ public class UserDAO {
                     user.setFirstName(rs.getString("fName"));
                     user.setLastName(rs.getString("lName"));
                     user.setEmail(rs.getString("email"));
+                    user.setBooksAtATime(rs.getInt("BooksAtATime"));
+                    user.setUserTypeID(rs.getInt("userTypeID"));
                     result.add(user);
                 } while (rs.next());
             }
@@ -57,27 +59,30 @@ public class UserDAO {
      * @return
      */
     public static User findUserFromId(int id) throws Exception{
-        Connection conn = DBConnection.getConnection();
-        String sql = "SELECT * FROM users WHERE id = ? ;";
-        ResultSet rs = null;
-        User result = null;
-        try{
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, id);
-            rs = pstmt.executeQuery();
-            //start new code
-            if (!rs.next() ) {
-                new Exception("No user found");
-            } else {
-                User user = new User();
-                do {
-                    user.setId(rs.getInt("id"));
-                    user.setFirstName(rs.getString("fName"));
-                    user.setLastName(rs.getString("lName"));
-                    user.setEmail(rs.getString("email"));
-                } while (rs.next());
-                result = user; // Since only one result is waited, this should work.
-            }
+                Connection conn = DBConnection.getConnection();
+                String sql = "SELECT * FROM users WHERE id = ? ;";
+                ResultSet rs = null;
+                User result = null;
+                try{
+                    PreparedStatement pstmt = conn.prepareStatement(sql);
+                    pstmt.setInt(1, id);
+                    rs = pstmt.executeQuery();
+                    //start new code
+                    if (!rs.next() ) {
+                        new Exception("No user found");
+                    } else {
+                        User user = new User();
+                        do {
+                            user.setId(rs.getInt("id"));
+                            user.setFirstName(rs.getString("fName"));
+                            user.setLastName(rs.getString("lName"));
+                            user.setEmail(rs.getString("email"));
+                            user.setBooksAtATime(rs.getInt("BooksAtATime"));
+                            user.setUserTypeID(rs.getInt("userTypeID"));
+                            user.setPasswordHash(rs.getString("passwordHash"));
+                        } while (rs.next());
+                        result = user; // Since only one result is waited, this should work.
+                    }
            // end new code
 
         } catch (SQLException e){
@@ -113,6 +118,9 @@ public class UserDAO {
                     user.setFirstName(rs.getString("fName"));
                     user.setLastName(rs.getString("lName"));
                     user.setEmail(rs.getString("email"));
+                    user.setBooksAtATime(rs.getInt("BooksAtATime"));
+                    user.setUserTypeID(rs.getInt("userTypeID"));
+                    user.setPasswordHash(rs.getString("passwordHash"));
                 } while (rs.next());
                 result = user; // Since only one result is waited, this should work.
             }
@@ -137,7 +145,7 @@ public class UserDAO {
     public static void saveUser(User user){
         Connection conn = DBConnection.getConnection();
         String sql = "INSERT INTO users(fName,lName,email, passwordHash, passwordResetToken," +
-                " userTypeID) VALUES(?,?,?,?,?,?) ;";
+                " userTypeID, booksAtATime) VALUES(?,?,?,?,?,?,?) ;";
 
         try{
             PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -148,7 +156,8 @@ public class UserDAO {
             pstmt.setString(3, user.getEmail());
             pstmt.setString(4, user.getPasswordHash());
             pstmt.setString(5, user.getPasswordResetToken());
-            pstmt.setInt(6, user.getUsertype().getId());
+            pstmt.setInt(6, user.getUserTypeID());
+            pstmt.setInt(7, user.getBooksAtATime());
 
             pstmt.executeUpdate();
 
@@ -192,6 +201,7 @@ public class UserDAO {
                 " lName = ?," +
                 " email = ?," +
                 " userTypeID = ?" +
+                " booksAtATime = ?"+
                 " WHERE id = ?;";
 
         try{
@@ -201,8 +211,9 @@ public class UserDAO {
             pstmt.setString(1, user.getFirstName());
             pstmt.setString(2, user.getLastName());
             pstmt.setString(3, user.getEmail());
-            pstmt.setInt(4, user.getUsertype().getId());
-            pstmt.setInt(5, user.getId());
+            pstmt.setInt(4, user.getUserTypeID());
+            pstmt.setInt(5, user.getBooksAtATime());
+            pstmt.setInt(6, user.getId());
 
             pstmt.executeUpdate();
 

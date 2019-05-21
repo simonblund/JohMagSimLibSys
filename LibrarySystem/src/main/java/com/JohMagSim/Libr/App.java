@@ -31,36 +31,11 @@ public class App {
         MainFrame mainFrame = new MainFrame("LibrarySys");
         mainFrame.setVisible(true);
 
-
-        // Ask if SQL migrations should run.
-        System.out.println("Would you like to run database migrations? Y/N");
+        // Ask if setuphelper should run
         Scanner inp = new Scanner(System.in);
+        System.out.println("Would you like to run setuphelper? Y/N");
         if (inp.nextLine().toLowerCase().equals("y")) {
-            DBInitiation.createTables();
-        }
-
-        //Ask if you want to show all active loans
-        System.out.println("Would you like to show all active loans? Y/N");
-        if (inp.nextLine().toLowerCase().equals("y")) {
-            ArrayList loanresult = LoanDAO.findAllActiveLoans();
-
-            for (Object loanElement : loanresult) {
-                System.out.println(loanElement);
-            }
-        }
-
-
-
-        // Ask if test of db connection  should run.
-        System.out.println("Would you like to show users? Y/N");
-        if (inp.nextLine().toLowerCase().equals("y")) {
-            try{
-                ArrayList<User> users = UserDAO.findUsersFromName("Simon", "Blomsterlund");
-                System.out.println(users.size());
-                System.out.println(users.get(0).getFirstName() + " " + users.get(0).getFirstName());
-            } catch (Exception e){}
-
-
+            SetupHelper.start();
         }
 
 

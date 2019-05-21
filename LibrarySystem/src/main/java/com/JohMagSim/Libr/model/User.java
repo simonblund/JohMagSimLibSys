@@ -9,12 +9,8 @@ public class User {
     private String email;
     private String passwordHash;
     private String passwordResetToken;
-    private UserType usertype;
-
-
-
-
-
+    private int userTypeID;
+    private int booksAtATime;
 
     // Setters & Getters
     public int getId() {
@@ -65,12 +61,24 @@ public class User {
         this.passwordResetToken = passwordResetToken;
     }
 
-    public UserType getUsertype() {
-        return usertype;
+    public int getUserTypeID() {
+        return userTypeID;
     }
 
-    public void setUsertype(UserType usertype) {
-        this.usertype = usertype;
+    public void setUserTypeID(int userTypeID) {
+        this.userTypeID = userTypeID;
+    }
+
+    public int getBooksAtATime() {
+        return booksAtATime;
+    }
+
+    public void setBooksAtATime(int booksAtATime) {
+        this.booksAtATime = booksAtATime;
+    }
+
+    public UserType getUserType(){
+        return UserTypeRepository.findUsertype(userTypeID);
     }
 
 }
