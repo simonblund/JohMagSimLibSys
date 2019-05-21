@@ -1,5 +1,8 @@
 # Changelog and descriptions
 
+## 21.05.2019 JN
+-Item, DVDItem och paperItem updated
+
 ## 20.05.2019 18:20 SB
 - Updated UserDAO with exceptions if the SQL resultset is empty, the solution should be implementable on other DAO:s.
 - SignInPanel Should work properly, not tested with JUnit but with manual tests.
