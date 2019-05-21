@@ -23,7 +23,7 @@ public class DVDItemDAO {
     public static int createDVDItem(DVDItem dvdItem) {
         int key = -1; //generated key
         Connection conn = DBConnection.getConnection();
-        String sql = "INSERT INTO item(ISBN_EAN, title, itemType, edition, year, staff_id, age_restriction, prod_country, category, maximumLoanTime, actors) VALUES (?,?,?,?,?,?,?,?,?,?, ?);";
+        String sql = "INSERT INTO item(ISBN_EAN, title, itemType, edition, year, staff_id, age_restriction, prod_country, category, location, maximumLoanTime, actors) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);";
         List<String> actors = dvdItem.getActors(); //gör om listan till sträng
         StringBuilder sb = new StringBuilder(); //bygger en sträng
         for (String actor : actors) {
@@ -44,8 +44,9 @@ public class DVDItemDAO {
             pstmt.setInt(7, dvdItem.getAgeRestriction());
             pstmt.setString(8, dvdItem.getProdCountry());
             pstmt.setString(9, dvdItem.getCategory());
-            pstmt.setInt(10, dvdItem.getLoantime());
-            pstmt.setString(11, allActors);
+            pstmt.setString(10,dvdItem.getLocation());
+            pstmt.setInt(11, dvdItem.getLoantime());
+            pstmt.setString(12, allActors);
             pstmt.executeUpdate();
 
             ResultSet generatedKeys = pstmt.getGeneratedKeys();
@@ -53,7 +54,7 @@ public class DVDItemDAO {
 
 
         } catch (SQLException e) {
-            LOGGER.severe("saveItem " + e.getMessage());
+            LOGGER.severe("saveDVDItem: " + e.getMessage());
         } finally {
             DBConnection.closeConnection(conn);
         }
@@ -63,7 +64,7 @@ public class DVDItemDAO {
     public static DVDItem findDVDbyId(int id) {
         Connection conn = DBConnection.getConnection();
         String sql = "SELECT * FROM item WHERE id = ? ;";
-        ResultSet rs = null;
+        ResultSet rs;
         DVDItem result = null;
 
         try {
@@ -82,6 +83,7 @@ public class DVDItemDAO {
             dvdItem.setAgeRestriction(rs.getInt("age_restriction"));
             dvdItem.setProdCountry(rs.getString("prod_country"));
             dvdItem.setCategory(rs.getString("category"));
+            dvdItem.setLocation(rs.getString("location"));
 
             String actorsFromDB = rs.getString("actors"); //actors as String
             String[] split = actorsFromDB.split(","); //common array created by split
