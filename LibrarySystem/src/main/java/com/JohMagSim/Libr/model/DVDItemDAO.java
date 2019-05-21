@@ -120,7 +120,62 @@ public class DVDItemDAO {
         }
     }
 
-    //UpdateDVD
+    //UpdateDVD, To do - if int id dont exist in db
+    public static int uppdateDVDItem(DVDItem dvdItem, int id) {
+        int updates = -1; //count for nr of updates
+        Connection conn = DBConnection.getConnection();
+        String sql = "UPDATE item SET " +
+                "ISBN_EAN=?," +
+                "title=?," +
+                "itemType=?," +
+                "edition=?," +
+                "year=?," +
+                "staff_id=?," +
+                "age_restriction=?," +
+                "prod_country=?," +
+                "category=?," +
+                "location=?," +
+                "maximumLoanTime=?," +
+                "actors=? " +
+                "WHERE id= ?;";
+        List<String> actors = dvdItem.getActors(); //gör om listan till sträng
+        StringBuilder sb = new StringBuilder(); //bygger en sträng
+        for (String actor : actors) {
+            sb.append(actor); //första actor, andra actor
+            sb.append(", "); //separator
+        }
+        String allActors = sb.toString(); //alla mina actors i en sträng
+
+        try {
+
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            // Set the parameters
+
+            pstmt.setString(1, dvdItem.getISBNEAN());
+            pstmt.setString(2, dvdItem.getTitle());
+            pstmt.setString(3, dvdItem.getType());
+            pstmt.setInt(4, dvdItem.getEdition());
+            pstmt.setInt(5, dvdItem.getYear());
+            pstmt.setInt(6, dvdItem.getStaffId());
+            pstmt.setInt(7, dvdItem.getAgeRestriction());
+            pstmt.setString(8, dvdItem.getProdCountry());
+            pstmt.setString(9, dvdItem.getCategory());
+            pstmt.setString(10, dvdItem.getLocation());
+            pstmt.setInt(11, dvdItem.getLoantime());
+            pstmt.setString(12, allActors);
+            pstmt.setInt(13, id); //id for the item that should be updated
+            pstmt.executeUpdate();
+
+            updates = pstmt.getUpdateCount();
+
+        } catch (SQLException e) {
+            LOGGER.severe("UppdateDVDItem: " + e.getMessage());
+        } finally {
+            DBConnection.closeConnection(conn);
+        }
+        return updates;
+
+    }
 
 
 }
