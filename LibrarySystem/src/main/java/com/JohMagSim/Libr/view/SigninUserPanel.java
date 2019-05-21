@@ -108,6 +108,9 @@ public class SigninUserPanel extends JPanel {
                         if (AuthControl.checkEmailExists(email)) {
                             try{
                                 App.signedInUser = AuthControl.signIn(email, password);
+                                setVisible(false);
+                                setEnabled(false);
+                                App.mainFrame.add(new HomePanel(), BorderLayout.CENTER);
                             }
                             catch (Exception b){
                                 emailField.setBackground(Color.red);

@@ -18,5 +18,5 @@ public class ViewProperties {
     public final static int width =500;
     public final static int height=400;
 
-    public static Dimension dimension = new Dimension(500,400);
+    public static Dimension dimension = new Dimension(800,600);
 }

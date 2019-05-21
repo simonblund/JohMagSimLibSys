@@ -14,6 +14,8 @@ public class MainFrame extends JFrame {
     private HomePanel homePanel;
     private SigninUserPanel signinUserPanel;
 
+    public JPanel center;
+
     public MainFrame(String title){
         super(title);
 
@@ -24,9 +26,11 @@ public class MainFrame extends JFrame {
 
         mb.add(m1);
         mb.add(m2);
-        if(App.signedInUser==null){
-            JMenu m3 = new JMenu("Sign in");
-            m3.addMenuListener(new MenuListener() {
+
+
+
+        JMenu m3 = new JMenu("Sign in");
+        m3.addMenuListener(new MenuListener() {
                 public void menuSelected(MenuEvent e) {
                     homePanel.setVisible(false);
                     add(BorderLayout.CENTER, signinUserPanel);
@@ -35,11 +39,10 @@ public class MainFrame extends JFrame {
                 public void menuDeselected(MenuEvent event){}
                 public void menuCanceled(MenuEvent e){}
             });
-            mb.add(m3);
-        } else {
-            JMenu m4 = new JMenu("Sign out");
-            mb.add(m4);
-        }
+
+
+        JMenu m4 = new JMenu("Sign out");
+
 
         homePanel = new HomePanel();
         signinUserPanel = new SigninUserPanel();
