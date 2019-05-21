@@ -1,6 +1,9 @@
 # Changelog and descriptions
 
 ## 21.05.2019 JN
+-DVDItemDAO updated with finding methods and DVDitemDAOtest updated with diffrent cases. DVDitemDAOtest is under construction
+
+## 21.05.2019 JN
 -DVDItemDAO updated with delete and update methods
 
 ## 21.05.2019 JN
