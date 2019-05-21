@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -19,10 +20,10 @@ public class DVDItemDAO {
 
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
-    public static void createDVDItem(DVDItem dvdItem) {
+    public static int createDVDItem(DVDItem dvdItem) {
+        int key = -1; //generated key
         Connection conn = DBConnection.getConnection();
         String sql = "INSERT INTO item(ISBN_EAN, title, itemType, edition, year, staff_id, age_restriction, prod_country, category, maximumLoanTime, actors) VALUES (?,?,?,?,?,?,?,?,?,?, ?);";
-        //
         List<String> actors = dvdItem.getActors(); //gör om listan till sträng
         StringBuilder sb = new StringBuilder(); //bygger en sträng
         for (String actor : actors) {
@@ -33,7 +34,6 @@ public class DVDItemDAO {
 
         try {
             PreparedStatement pstmt = conn.prepareStatement(sql);
-
             // Set the parameters
             pstmt.setString(1, dvdItem.getISBNEAN());
             pstmt.setString(2, dvdItem.getTitle());
@@ -48,16 +48,18 @@ public class DVDItemDAO {
             pstmt.setString(11, allActors);
             pstmt.executeUpdate();
 
+            ResultSet generatedKeys = pstmt.getGeneratedKeys();
+            key = generatedKeys.getInt(1);
+
+
         } catch (SQLException e) {
             LOGGER.severe("saveItem " + e.getMessage());
-
         } finally {
             DBConnection.closeConnection(conn);
         }
+        return key;
     }
 
-    //findDVDbyID
-    //Not woking ok. Must be fixed
     public static DVDItem findDVDbyId(int id) {
         Connection conn = DBConnection.getConnection();
         String sql = "SELECT * FROM item WHERE id = ? ;";
@@ -81,7 +83,9 @@ public class DVDItemDAO {
             dvdItem.setProdCountry(rs.getString("prod_country"));
             dvdItem.setCategory(rs.getString("category"));
 
-            // dvdItem.setActors(Collections.singletonList(rs.getString("actors")));
+            String actorsFromDB = rs.getString("actors"); //actors as String
+            String[] split = actorsFromDB.split(","); //common array created by split
+            dvdItem.setActors(Arrays.asList(split)); //Change from array to list
 
             dvdItem.setLoantime(rs.getInt("maximumLoanTime"));
             result = dvdItem;
