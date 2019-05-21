@@ -12,6 +12,7 @@ import java.util.*;
  * Hello world!
  */
 public class App {
+    public static User signedInUser;
     public static void main(String[] args) {
         // Set up logger OBS if DEV send string to LibraryLoggerSetup
         try {
@@ -53,9 +54,13 @@ public class App {
         // Ask if test of db connection  should run.
         System.out.println("Would you like to show users? Y/N");
         if (inp.nextLine().toLowerCase().equals("y")) {
-            ArrayList<User> users = UserDAO.findUsersFromName("Simon", "Blomsterlund");
-            System.out.println(users.size());
-            System.out.println(users.get(0).getFirstName() + " " + users.get(0).getFirstName());
+            try{
+                ArrayList<User> users = UserDAO.findUsersFromName("Simon", "Blomsterlund");
+                System.out.println(users.size());
+                System.out.println(users.get(0).getFirstName() + " " + users.get(0).getFirstName());
+            } catch (Exception e){}
+
+
         }
 
 
