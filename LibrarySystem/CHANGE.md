@@ -1,5 +1,8 @@
 # Changelog and descriptions
 
+## 22.05.2019 SB 12:25
+- Changing center jpanel content now works, see showSigninPanel function in viewcontrol.
+
 ## 22.05.2019 SB 02:00
 - Major changes to structure of GUI. Now implementing separation of concerns. The old GUI classes still in place until
 new system working properly, this is a lot easier. The window saying Libsys is the new one.

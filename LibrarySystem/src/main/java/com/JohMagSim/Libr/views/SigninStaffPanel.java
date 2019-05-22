@@ -5,13 +5,13 @@ import com.JohMagSim.Libr.utils.*;
 import javax.swing.*;
 import java.awt.*;
 
-public class SigninUserPanel extends JPanel{
+public class SigninStaffPanel extends JPanel {
     private JSplitPane splitPanel = new JSplitPane();
     private JPanel panelLeft = new JPanel();
     private JPanel panelRight = new JPanel();
     private GridBagConstraints gbc = new GridBagConstraints();
-    private JLabel textLeft = new JLabel("Sign in");
-    private JButton signInStaff = new JButton("Staff sign in");
+    private JLabel textLeft = new JLabel("Sign in staff");
+    private JButton signInUser = new JButton("User sign in");
     private JLabel email = new JLabel("email");
     private JLabel password = new JLabel("Password");
     private JTextField emailField = new JTextField();
@@ -58,12 +58,12 @@ public class SigninUserPanel extends JPanel{
         this.textLeft = textLeft;
     }
 
-    public JButton getSignInStaff() {
-        return signInStaff;
+    public JButton getSignInUser() {
+        return signInUser;
     }
 
-    public void setSignInStaff(JButton signInStaff) {
-        this.signInStaff = signInStaff;
+    public void setSignInUser(JButton signInUser) {
+        this.signInUser = signInUser;
     }
 
     public JLabel getEmail() {
@@ -108,7 +108,7 @@ public class SigninUserPanel extends JPanel{
 
 
 
-    public SigninUserPanel(){
+    public SigninStaffPanel(){
         setLayout(new BorderLayout());
         panelLeft.setLayout(new BorderLayout());
         panelLeft.setBackground(ViewProperties.primaryColor);
@@ -127,7 +127,7 @@ public class SigninUserPanel extends JPanel{
 
 
         panelLeft.add(BorderLayout.CENTER,textLeft);
-        panelLeft.add(BorderLayout.SOUTH, signInStaff);
+        panelLeft.add(BorderLayout.SOUTH, signInUser);
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
         gbc.gridx = 0;
