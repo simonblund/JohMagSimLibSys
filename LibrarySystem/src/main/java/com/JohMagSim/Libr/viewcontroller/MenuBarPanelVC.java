@@ -17,8 +17,15 @@ public class MenuBarPanelVC {
         return mbp;
     }
 
-    private void initMbp(){
-        mbp.getM3().addMenuListener(menuListener);
+    public void initMbp(){
+
+        if(App.signedInUser == null){
+            mbp.add(mbp.getM3());
+            mbp.getM3().addMenuListener(menuListener);
+        } else {
+            mbp.remove(mbp.getM3());
+            mbp.add(mbp.getM4());
+        }
     }
 
     private MenuListener menuListener = new MenuListener() {

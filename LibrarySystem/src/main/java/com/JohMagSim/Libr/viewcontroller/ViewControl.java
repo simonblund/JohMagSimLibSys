@@ -11,11 +11,21 @@ public class ViewControl {
     public Frame frame;
     private JPanel center = new JPanel();
     private CardLayout cards = new CardLayout();
+
+    private MenuBarPanelVC mbpvc = new MenuBarPanelVC(new MenubarPanel());
+
+    public MenuBarPanelVC getMbpvc() {
+        return mbpvc;
+    }
+
+    public void setMbpvc(MenuBarPanelVC mbpvc) {
+        this.mbpvc = mbpvc;
+    }
     public void init(){
         frame = new Frame("Libsys");
         center.setLayout(cards);
         HomePanelVC homePanelVC = new HomePanelVC(new HomePanel());
-        frame.add(BorderLayout.NORTH,new MenuBarPanelVC(new MenubarPanel()).getMbp());
+        frame.add(BorderLayout.NORTH,mbpvc.getMbp());
         center.add("home",homePanelVC.getHomepanel());
         frame.add(center, BorderLayout.CENTER);
         cards.show(center, "home");

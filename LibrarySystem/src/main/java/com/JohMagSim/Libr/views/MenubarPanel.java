@@ -47,8 +47,6 @@ public class MenubarPanel extends JMenuBar {
     public MenubarPanel(){
         add(m1);
         add(m2);
-        add(m3);
-        add(m4);
         setVisible(true);
     }
 }
