@@ -43,4 +43,10 @@ public class ViewControl {
         cards.show(center, "ssp");
     }
 
+    public void showCreateItemPanel(){
+        CreateItemPanel cip = new CreateItemVC(new CreateItemPanel()).getCip();
+        center.add("cip", cip);
+        cards.show(center,"cip");
+    }
+
 }

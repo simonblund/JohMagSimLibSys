@@ -21,16 +21,27 @@ public class MenuBarPanelVC {
 
         if(App.signedInUser == null){
             mbp.add(mbp.getM3());
-            mbp.getM3().addMenuListener(menuListener);
+            mbp.getM3().addMenuListener(showUserSignin);
         } else {
             mbp.remove(mbp.getM3());
             mbp.add(mbp.getM4());
         }
+
+        mbp.getM2().addMenuListener(showCreateItem);
     }
 
-    private MenuListener menuListener = new MenuListener() {
+    private MenuListener showUserSignin = new MenuListener() {
         public void menuSelected(MenuEvent e) {
             App.vc.showSigninUserPanel();
+
+        }
+        public void menuDeselected(MenuEvent event){}
+        public void menuCanceled(MenuEvent e){}
+    };
+
+    private MenuListener showCreateItem = new MenuListener() {
+        public void menuSelected(MenuEvent e) {
+            App.vc.showCreateItemPanel();
 
         }
         public void menuDeselected(MenuEvent event){}

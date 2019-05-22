@@ -6,7 +6,7 @@ import java.awt.*;
 
 public class MenubarPanel extends JMenuBar {
     private  JMenu m1 = new JMenu("FILE");
-    private  JMenu m2 = new JMenu("Help");
+    private  JMenu m2 = new JMenu("Item");
     private  JMenu m3 = new JMenu("Sign in");
     private JMenu m4 = new JMenu("Sign out");
 
