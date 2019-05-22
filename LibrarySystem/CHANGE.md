@@ -1,5 +1,8 @@
 # Changelog and descriptions
 
+##22.05.2019 JN
+-view: CreateItem och view controller: CreateItems added
+
 ## 22.05.2019 SB 12:25
 - Changing center jpanel content now works, see showSigninPanel function in viewcontrol.
 
