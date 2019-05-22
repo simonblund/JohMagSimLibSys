@@ -7,29 +7,30 @@ import com.JohMagSim.Libr.views.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class SigninUserPanelVC {
-    private SigninUserPanel sup;
+public class SigninStaffPanelVC {
 
-    public SigninUserPanelVC(SigninUserPanel signinUserPanel){
-        sup = signinUserPanel;
+    private SigninStaffPanel ssp;
+
+    public SigninStaffPanelVC(SigninStaffPanel signinStaffPanel){
+        ssp = signinStaffPanel;
     }
-    public SigninUserPanel getSup(){
+    public SigninStaffPanel getSsp(){
         initSup();
-        return sup;
+        return ssp;
     }
 
     private void initSup(){
-        sup.getSignInButton().addActionListener(signInButtonPressed);
-        sup.getSignInStaff().addActionListener(signinStaffButtonPressed);
-        sup.updateUI();
+        ssp.getSignInButton().addActionListener(signInButtonPressed);
+        ssp.getSignInUser().addActionListener(userSigninButtonPressed);
+        ssp.updateUI();
     }
 
 
     private ActionListener signInButtonPressed = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            String email = sup.getEmailField().getText();
-            char[] password = sup.getPasswordField().getPassword();
+            String email = ssp.getEmailField().getText();
+            char[] password = ssp.getPasswordField().getPassword();
             Thread thread = new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -40,27 +41,27 @@ public class SigninUserPanelVC {
                             App.mainFrame.add(new HomePanel(), BorderLayout.CENTER);
                         }
                         catch (Exception b){
-                            sup.getEmailField().setBackground(Color.red);
-                            sup.getPasswordField().setBackground(Color.red);
+                            ssp.getEmailField().setBackground(Color.red);
+                            ssp.getPasswordField().setBackground(Color.red);
                         }
 
                     } else{
-                        sup.getEmailField().setToolTipText("Email & Password no matchy matchy");
-                        sup.getPasswordField().setBackground(Color.red);
-                        sup.getPasswordField().setBackground(Color.red);
+                        ssp.getEmailField().setToolTipText("Email & Password no matchy matchy");
+                        ssp.getPasswordField().setBackground(Color.red);
+                        ssp.getPasswordField().setBackground(Color.red);
                     }
 
                 }
             });
             thread.run();
-            sup.updateUI();
+            ssp.updateUI();
         }
     };
 
-    private ActionListener signinStaffButtonPressed = new ActionListener() {
+    private ActionListener userSigninButtonPressed = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            App.vc.showSigninStaffPanel();
+            App.vc.showSigninUserPanel();
         }
     };
 }

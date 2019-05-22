@@ -27,5 +27,10 @@ public class ViewControl {
         center.add("sup",sup);
         cards.show(center, "sup");
     }
+    public void showSigninStaffPanel(){
+        SigninStaffPanel ssp = new SigninStaffPanelVC(new SigninStaffPanel()).getSsp();
+        center.add("ssp",ssp);
+        cards.show(center, "ssp");
+    }
 
 }
