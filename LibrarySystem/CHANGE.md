@@ -1,5 +1,17 @@
 # Changelog and descriptions
 
+## 23.05.2019 SB 00:55
+- Fixed createItem to conform with other views of the new structure.
+- Added staffPanel with tabbed interface, this should probably be the ground for everything the staff
+is able to do when logged in example tabs would be LEVEL 0 Item, user, copy, loan.
+LEVEL 1 under item - create item, edit item, delete item, list items(?)
+LEVEL 1 undrt user - create user, edit user, delete user and so on.
+
+this need some thinking before proceeding.
+
+The tabbed interface looks messy atm, will fix tomorrow.
+
+
 ##22.05.2019 JN
 -view: CreateItem och view controller: CreateItems added
 

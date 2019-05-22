@@ -9,6 +9,15 @@ public class MenubarPanel extends JMenuBar {
     private  JMenu m2 = new JMenu("Item");
     private  JMenu m3 = new JMenu("Sign in");
     private JMenu m4 = new JMenu("Sign out");
+    private JMenu m5 = new JMenu("Staff");
+
+    public JMenu getM5() {
+        return m5;
+    }
+
+    public void setM5(JMenu m5) {
+        this.m5 = m5;
+    }
 
     public JMenu getM1() {
         return m1;

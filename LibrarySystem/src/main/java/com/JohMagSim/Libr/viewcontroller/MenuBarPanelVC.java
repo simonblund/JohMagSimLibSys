@@ -28,6 +28,8 @@ public class MenuBarPanelVC {
         }
 
         mbp.getM2().addMenuListener(showCreateItem);
+        mbp.getM5().addMenuListener(showStaffPanel);
+        mbp.add(mbp.getM5());
     }
 
     private MenuListener showUserSignin = new MenuListener() {
@@ -42,6 +44,15 @@ public class MenuBarPanelVC {
     private MenuListener showCreateItem = new MenuListener() {
         public void menuSelected(MenuEvent e) {
             App.vc.showCreateItemPanel();
+
+        }
+        public void menuDeselected(MenuEvent event){}
+        public void menuCanceled(MenuEvent e){}
+    };
+
+    private MenuListener showStaffPanel = new MenuListener() {
+        public void menuSelected(MenuEvent e) {
+            App.vc.showStaffPanel();
 
         }
         public void menuDeselected(MenuEvent event){}

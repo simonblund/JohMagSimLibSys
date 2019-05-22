@@ -49,4 +49,11 @@ public class ViewControl {
         cards.show(center,"cip");
     }
 
+    public void showStaffPanel(){
+        StaffPanelVC sp = new StaffPanelVC(new StaffPanel());
+        sp.initStaffPanel();
+        center.add("sp",sp.getSp());
+        cards.show(center,"sp");
+    }
+
 }
