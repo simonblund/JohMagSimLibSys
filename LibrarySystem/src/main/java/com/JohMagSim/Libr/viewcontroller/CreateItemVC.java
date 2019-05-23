@@ -32,12 +32,16 @@ public class CreateItemVC {
             String title = cip.getTitleTextField().getText();
 
             String location = "";
-            String type = cip.getTypeTextField().getText();
+
+            String type = (String) cip.getItemType().getSelectedItem();
+
+
             int edition = Integer.parseInt(cip.getEditionTextField().getText());
             int year = Integer.parseInt(cip.getYearTextfield().getText());
 
             int staffId = 99;
-            int loanTime = Integer.parseInt(cip.getLoanTimeTextfield().getText());
+            int loanTime=1;
+           // int loanTime = Integer.parseInt(cip.getLoanTimeTextfield().getText());
             String ISBNEAN = cip.getISBNOrEANTextField().getText();
             String category = cip.getCategoryTextfield().getText();
             String prodCountry = cip.getProdCountryTextfield().getText();
