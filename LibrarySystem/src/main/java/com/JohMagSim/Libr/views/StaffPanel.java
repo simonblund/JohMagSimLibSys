@@ -1,6 +1,7 @@
 package com.JohMagSim.Libr.views;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class StaffPanel extends JPanel {
     JTabbedPane staffTabs = new JTabbedPane();
@@ -13,9 +14,8 @@ public class StaffPanel extends JPanel {
         this.staffTabs = staffTabs;
     }
 
-
-
     public StaffPanel(){
+        setLayout(new BorderLayout());
 
     }
 }
