@@ -82,11 +82,65 @@ public class PaperItemDAO {
             result = paperItem;
 
         } catch (SQLException e) {
-            LOGGER.severe("findDVDById " + e.getMessage());
+            LOGGER.severe("findPaperItemById " + e.getMessage());
         } finally {
             DBConnection.closeConnection(conn);
         }
         return result;
     }
+
+
+    public static int uppdatePaperItem(PaperItem paperItem, int id) {
+        int updates = -1; //count for nr of updates
+        Connection conn = DBConnection.getConnection();
+        String sql = "UPDATE item SET " +
+                "ISBN_EAN=?," +
+                "title=?," +
+                "itemType=?," +
+                "edition=?," +
+                "year=?," +
+                "staff_id=?," +
+
+                "category=?," +
+                "location=?," +
+                "maximumLoanTime=?," +
+                "authors=? " +
+                "WHERE id= ?;";
+        List<String> authors = paperItem.getAuthors(); //gör om listan till sträng
+        StringBuilder sb = new StringBuilder(); //bygger en sträng
+        for (String author : authors) {
+            sb.append(author); //första author, andra author
+            sb.append(", "); //separator
+        }
+        String allAuthors= sb.toString(); //alla mina authorss i en sträng
+
+        try {
+
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            // Set the parameters
+            pstmt.setString(1, paperItem.getISBNEAN());
+            pstmt.setString(2, paperItem.getTitle());
+            pstmt.setString(3, paperItem.getType());
+            pstmt.setInt(4, paperItem.getEdition());
+            pstmt.setInt(5, paperItem.getYear());
+            pstmt.setInt(6, paperItem.getStaffId());
+            pstmt.setString(7, paperItem.getCategory());
+            pstmt.setString(8, paperItem.getLocation());
+            pstmt.setInt(9, paperItem.getLoantime());
+            pstmt.setString(10, allAuthors);
+            pstmt.setInt(11, id); //id for the item that should be updated
+            pstmt.executeUpdate();
+
+            updates = pstmt.getUpdateCount();
+
+        } catch (SQLException e) {
+            LOGGER.severe("UppdatePaperItem: " + e.getMessage());
+        } finally {
+            DBConnection.closeConnection(conn);
+        }
+        return updates;
+
+    }
+
 
 }
