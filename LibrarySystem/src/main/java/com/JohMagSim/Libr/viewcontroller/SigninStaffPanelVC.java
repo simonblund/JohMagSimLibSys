@@ -38,7 +38,6 @@ public class SigninStaffPanelVC {
                         try{
                             App.signedInUser = AuthControl.signIn(email, password);
 
-                            App.mainFrame.add(new HomePanel(), BorderLayout.CENTER);
                         }
                         catch (Exception b){
                             ssp.getEmailField().setBackground(Color.red);

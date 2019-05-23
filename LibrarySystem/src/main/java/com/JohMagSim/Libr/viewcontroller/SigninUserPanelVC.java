@@ -38,7 +38,6 @@ public class SigninUserPanelVC {
                             App.signedInUser = AuthControl.signIn(email, password);
                             App.vc.getMbpvc().initMbp();
 
-                            App.mainFrame.add(new HomePanel(), BorderLayout.CENTER);
                         }
                         catch (Exception b){
                             sup.getEmailField().setBackground(Color.red);
