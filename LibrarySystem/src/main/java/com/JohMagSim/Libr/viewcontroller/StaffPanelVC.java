@@ -23,8 +23,16 @@ public class StaffPanelVC {
         StaffTabItemsVC stivc = new StaffTabItemsVC(new StaffTabItems());
         stivc.initStaffPanelItems();
 
+        StaffTabCopiesVC stcvc = new StaffTabCopiesVC(new StaffTabCopies());
+        stcvc.initStaffTabCopies();
+
+        StaffTabUsersVC stuvc = new StaffTabUsersVC(new StaffTabUsers());
+        stuvc.initStaffTabUsers();
+
         sp.getStaffTabs().addTab("Staff", sthvc.getSth());
         sp.getStaffTabs().addTab("Item", stivc.getSti());
+        sp.getStaffTabs().addTab("Copies", stcvc.getSti());
+        sp.getStaffTabs().addTab("Users", stuvc.getSti());
         sp.add(BorderLayout.CENTER,sp.getStaffTabs());
         sp.setVisible(true);
         sp.updateUI();
