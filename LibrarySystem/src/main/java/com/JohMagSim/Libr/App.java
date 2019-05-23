@@ -14,7 +14,6 @@ import java.util.*;
  */
 public class App {
     public static User signedInUser;
-    public static MainFrame mainFrame = new MainFrame("LibrarySys");
     public static ViewControl vc = new ViewControl();
     public static void main(String[] args) {
         // Set up logger OBS if DEV send string to LibraryLoggerSetup
@@ -25,14 +24,10 @@ public class App {
             throw new RuntimeException("Problems with creating the log files");
         }
 
-
-        System.out.println("Hello World!");
+        System.out.println("Library System is starting!");
 
         LoanTerminalFrame frame = new LoanTerminalFrame("Låneterminal");
         frame.setVisible(true);
-
-
-        mainFrame.setVisible(true);
 
         vc.init();
 
