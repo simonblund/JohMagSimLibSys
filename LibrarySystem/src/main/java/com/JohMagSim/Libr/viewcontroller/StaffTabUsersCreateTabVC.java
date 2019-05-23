@@ -10,6 +10,7 @@ import java.util.*;
 
 public class StaffTabUsersCreateTabVC {
     private StaffTabUsersCreateTab cip;
+    private ArrayList<UserType> userTypes = UserTypeRepository.getUserTypes();
 
     public StaffTabUsersCreateTabVC(StaffTabUsersCreateTab createUserTab){
         cip = createUserTab;
@@ -21,9 +22,7 @@ public class StaffTabUsersCreateTabVC {
 
     public void initStaffTabUsersCreateTab(){
 
-        UserTypeRepository.startup();
 
-        ArrayList<UserType> userTypes = UserTypeRepository.getUserTypes();
         for(int i=0;i<userTypes.size(); i++){
             cip.getUsertypeT().addItem(userTypes.get(i).getDescription());
         }
@@ -42,6 +41,7 @@ public class StaffTabUsersCreateTabVC {
             password = AuthControl.hashPassword(password);
             String passwordReset = AuthControl.getPasswordResetToken();
             int usertypeid = cip.getUsertypeT().getSelectedIndex();
+            int booksAtATime = userTypes.get(usertypeid).getBooksAtATime();
 
             User user = new User();
             user.setFirstName(firstname);
@@ -50,6 +50,7 @@ public class StaffTabUsersCreateTabVC {
             user.setPasswordHash(password);
             user.setPasswordResetToken(passwordReset);
             user.setUserTypeID(usertypeid);
+            user.setBooksAtATime(booksAtATime);
 
             UserDAO.saveUser(user);
 

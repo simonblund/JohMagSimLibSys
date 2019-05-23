@@ -200,7 +200,7 @@ public class UserDAO {
                 " fName = ?," +
                 " lName = ?," +
                 " email = ?," +
-                " userTypeID = ?" +
+                " userTypeID = ?," +
                 " booksAtATime = ?"+
                 " WHERE id = ?;";
 

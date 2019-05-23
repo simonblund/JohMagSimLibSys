@@ -16,6 +16,7 @@ public class App {
     public static User signedInUser;
     public static Staff signedInStaff;
     public static ViewControl vc = new ViewControl();
+
     public static void main(String[] args) {
         // Set up logger OBS if DEV send string to LibraryLoggerSetup
         try {
@@ -24,6 +25,7 @@ public class App {
             e.printStackTrace();
             throw new RuntimeException("Problems with creating the log files");
         }
+        UserTypeRepository.startup();
 
         System.out.println("Library System is starting!");
 
