@@ -36,7 +36,11 @@ public class SigninStaffPanelVC {
                 public void run() {
                     if (AuthControl.checkEmailExists(email)) {
                         try{
+                            System.out.println("here"+ password + email);
+
                             App.signedInStaff = AuthControl.staffSignIn(email, password);
+                            App.vc.showStaffPanel();
+                            App.vc.getMbpvc().initMbp();
 
                         }
                         catch (Exception b){

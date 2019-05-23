@@ -36,6 +36,7 @@ public class SigninUserPanelVC {
                     if (AuthControl.checkEmailExists(email)) {
                         try{
                             App.signedInUser = AuthControl.signIn(email, password);
+                            App.vc.showHomePanel();
                             App.vc.getMbpvc().initMbp();
 
                         }

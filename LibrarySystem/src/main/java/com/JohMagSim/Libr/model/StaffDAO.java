@@ -101,6 +101,7 @@ public class StaffDAO {
             user.setEmail(rs.getString("email"));
             user.setStaffId(rs.getInt("staffID"));
             user.setManagerint(rs.getInt("manager"));
+            user.setPasswordHash(rs.getString("passwordHash"));
             result = user;
 
         } catch (SQLException e){
