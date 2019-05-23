@@ -1,5 +1,9 @@
 # Changelog and descriptions
 
+## 24.05.2019 SB 01:30
+- StaffTabs working
+- User functions in staffview working.
+
 ## 23.05.2019 JN
 -ItemDAO and ItemDAOTest created
 
