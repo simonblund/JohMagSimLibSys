@@ -19,8 +19,8 @@ public class StaffTabCopiesVC {
         StaffTabCopiesCreateTabVC stcctvc = new StaffTabCopiesCreateTabVC(new StaffTabCopiesCreateTab());
         stcctvc.initStaffTabCopiesCreateTab();
 
-        StaffTabItemsEditTabVC stietvc = new StaffTabItemsEditTabVC(new StaffTabItemsEditTab());
-        stietvc.initStaffTabItemsEditTab();
+        StaffTabCopiesEditTabVC stietvc = new StaffTabCopiesEditTabVC(new StaffTabCopiesEditTab());
+        stietvc.initStaffTabCopiesEditTab();
 
         sti.getCopyTabs().addTab("Create", stcctvc.getCip());
         sti.getCopyTabs().addTab("Edit", stietvc.getStiet());
