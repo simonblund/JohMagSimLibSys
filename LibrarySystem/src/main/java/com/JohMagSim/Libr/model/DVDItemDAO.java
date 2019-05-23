@@ -57,7 +57,6 @@ public class DVDItemDAO {
     }
 
     public static DVDItem findDVDbyId(int id)
-    //throws Exception
     {
         Connection conn = DBConnection.getConnection();
         String sql = "SELECT * FROM item WHERE id = ? ;";
@@ -70,11 +69,9 @@ public class DVDItemDAO {
             rs = pstmt.executeQuery();
 
             if (!rs.next()) {
-                new Exception("No DVD found");
-                System.out.println("No DVD found");
+                LOGGER.info("No DVD from id search found");
             } else {
-
-                // Create DVDitem from the result.
+                // Create DVDitem from the result
                 DVDItem dvdItem = new DVDItem();
                 dvdItem.setId(rs.getInt("id"));
                 dvdItem.setISBNEAN(rs.getString("ISBN_EAN"));
@@ -113,7 +110,7 @@ public class DVDItemDAO {
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
 
-        } catch (SQLException e) {
+        } catch (SQLException e) { //SQL excetions fångas här
             LOGGER.severe("deleteDVDFromId: " + e.getMessage());
         } finally {
             DBConnection.closeConnection(conn);
@@ -192,7 +189,7 @@ public class DVDItemDAO {
             rs = pstmt.executeQuery();
 
             if (!rs.next()) { //om inget resultat
-                new Exception("No actor found");
+                LOGGER.info("No DVD from actor search found");
             } else {
                 do {
                     DVDItem dvdItem = new DVDItem();
@@ -225,10 +222,8 @@ public class DVDItemDAO {
         return result;
     }
 
-
-    //Find item from actor
+    //Find item from title
     public static ArrayList<DVDItem> findDVDFromTitle(String title)
-    //throws Exception
     {
         Connection conn = DBConnection.getConnection();
         String sql = "SELECT * FROM item WHERE title LIKE ? AND itemType=?;";
@@ -241,7 +236,7 @@ public class DVDItemDAO {
             rs = pstmt.executeQuery();
 
             if (!rs.next()) { //om inget resultat
-                new Exception("No DVD found");
+                LOGGER.info("No DVD from title search found");
             } else {
                 do {
                     DVDItem dvdItem = new DVDItem();
@@ -275,10 +270,8 @@ public class DVDItemDAO {
     }
 
 
-    //Find item from actor
     public static ArrayList<DVDItem> findDVDFromTitleActorCountyAgeCategory
     (String title, String actor, String county, int age, String category)
-    //throws Exception
     {
         Connection conn = DBConnection.getConnection();
         String sql = "SELECT * FROM item WHERE title LIKE ? AND actors LIKE ? " +
@@ -298,7 +291,7 @@ public class DVDItemDAO {
             rs = pstmt.executeQuery();
 
             if (!rs.next()) { //om inget resultat
-                new Exception("No DVD found");
+                LOGGER.info("No DVD found");
             } else {
                 do {
                     DVDItem dvdItem = new DVDItem();
