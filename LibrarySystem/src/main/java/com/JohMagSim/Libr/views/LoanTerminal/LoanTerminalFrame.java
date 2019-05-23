@@ -1,4 +1,4 @@
-package com.JohMagSim.Libr.view;
+package com.JohMagSim.Libr.views.LoanTerminal;
 
 import com.JohMagSim.Libr.model.*;
 

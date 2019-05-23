@@ -3,8 +3,8 @@ package com.JohMagSim.Libr;
 import com.JohMagSim.Libr.model.*;
 import com.JohMagSim.Libr.utils.*;
 import com.JohMagSim.Libr.utils.log.*;
-import com.JohMagSim.Libr.view.*;
 import com.JohMagSim.Libr.viewcontroller.*;
+import com.JohMagSim.Libr.views.LoanTerminal.*;
 
 import java.io.*;
 import java.util.*;
