@@ -23,20 +23,36 @@ public class CreateItemPanel extends JPanel {
     private JButton saveDVDButton = new JButton("Create DVD-item");
     private JButton cancelButton = new JButton("Cancel");
 
-    private JTextField titleTextField = new JTextField("Enter title");
-    private JTextField ISBNOrEANTextField = new JTextField("Enter ISBN or EAN");
-    private JTextField typeTextField = new JTextField("Enter type: DVD, CourseBook, Journal, ReferenceBook or regularBook");
-    private JTextField editionTextField = new JTextField("Enter edition");
-    private JTextField locationTextfield = new JTextField("Enter location");
-    private JTextField yearTextfield = new JTextField("Enter year");
+    private JLabel title = new JLabel("Title: ");
+    private JTextField titleTextField = new JTextField(10);
 
-    private JTextField loanTimeTextfield = new JTextField("Enter loantime");
-    private JTextField categoryTextfield = new JTextField("Enter category, for example Action");
-    private JTextField prodCountryTextfield = new JTextField("Enter production country");
-    private JLabel age = new JLabel("Age restriction:");
-    private JTextField ageTextfield = new JTextField("enter for DVD");
+    private JLabel ISBNEAN = new JLabel("ISBN or EAN: ");
+    private JTextField ISBNOrEANTextField = new JTextField(10);
+
+    private JLabel itemTypeLabel = new JLabel("Item type: ");
+    private String[] itemStrings = {"DVD", "Course book", "Journal", "Reference book", "Regular book"};
+    private JComboBox itemType = new JComboBox(itemStrings);
+
+    private JLabel editionLable = new JLabel("Edition: ");
+    private JTextField editionTextField = new JTextField(2);
+
+    private JLabel locationLable = new JLabel("Location: ");
+    private JTextField locationTextfield = new JTextField(2);
+
+    private JLabel yearLable = new JLabel("Year: ");
+    private JTextField yearTextfield = new JTextField(2);
+
+  //  private JTextField loanTimeTextfield = new JTextField("Enter loantime");
+    private JLabel categoryLable = new JLabel("Category: ");
+    private JTextField categoryTextfield = new JTextField(5);
+    private JLabel prodcountry = new JLabel("Production country: ");
+    private JTextField prodCountryTextfield = new JTextField(5);
+
+    private JLabel age = new JLabel("Age restriction, for DVD:");
+    private JTextField ageTextfield = new JTextField(2);
+
     private JLabel actors = new JLabel("Actors:");
-    private JTextField actorsTextfield = new JTextField("Separate actors by (,)");
+    private JTextField actorsTextfield = new JTextField(10);
 
 
     public JPanel getButtons() {
@@ -95,12 +111,21 @@ public class CreateItemPanel extends JPanel {
         this.ISBNOrEANTextField = ISBNOrEANTextField;
     }
 
-    public JTextField getTypeTextField() {
-        return typeTextField;
+
+    public String[] getItemStrings() {
+        return itemStrings;
     }
 
-    public void setTypeTextField(JTextField typeTextField) {
-        this.typeTextField = typeTextField;
+    public void setItemStrings(String[] itemStrings) {
+        this.itemStrings = itemStrings;
+    }
+
+    public JComboBox getItemType() {
+        return itemType;
+    }
+
+    public void setItemType(JComboBox itemType) {
+        this.itemType = itemType;
     }
 
     public JTextField getEditionTextField() {
@@ -127,13 +152,13 @@ public class CreateItemPanel extends JPanel {
         this.yearTextfield = yearTextfield;
     }
 
-    public JTextField getLoanTimeTextfield() {
+   /* public JTextField getLoanTimeTextfield() {
         return loanTimeTextfield;
     }
 
     public void setLoanTimeTextfield(JTextField loanTimeTextfield) {
         this.loanTimeTextfield = loanTimeTextfield;
-    }
+    }*/
 
     public JTextField getCategoryTextfield() {
         return categoryTextfield;
@@ -192,21 +217,35 @@ public class CreateItemPanel extends JPanel {
         add(top, BorderLayout.NORTH); //at the top
 
 
-
         buttons.add(saveDVDButton);
         buttons.add(cancelButton);
+        top.add(title);
         top.add(titleTextField);
+        top.add(ISBNEAN);
         top.add(ISBNOrEANTextField);
-        top.add(typeTextField);
+        top.add(itemTypeLabel);
+        top.add(itemType);
+
+        top.add(categoryLable);
         top.add(categoryTextfield);
+
         middle.add(age);
         middle.add(ageTextfield);
+
+        middle.add(editionLable);
         middle.add(editionTextField);
+
+        middle.add(yearLable);
         middle.add(yearTextfield);
-        middle.add(loanTimeTextfield);
+      //  middle.add(loanTimeTextfield);
+
+        middle.add(prodcountry);
         middle.add(prodCountryTextfield);
+
         middle.add(actors);
         middle.add(actorsTextfield);
+
+        middle.add(locationLable);
         middle.add(locationTextfield);
 
     }
