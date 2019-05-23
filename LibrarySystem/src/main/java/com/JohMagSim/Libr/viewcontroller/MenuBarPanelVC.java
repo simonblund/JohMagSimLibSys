@@ -26,11 +26,17 @@ public class MenuBarPanelVC {
             mbp.remove(mbp.getM3());
             mbp.add(mbp.getM4());
         }
+        /* Uncommented for debugging
         if(App.signedInStaff != null){
             mbp.getM5().addMenuListener(showStaffPanel);
             mbp.add(mbp.getM5());
         }
         else{}
+
+         */
+
+        mbp.getM5().addMenuListener(showStaffPanel);
+        mbp.add(mbp.getM5());
 
         mbp.getM1().addMenuListener(showHomePanel);
 
