@@ -1,5 +1,8 @@
 # Changelog and descriptions
 
+## 23.05.2019 JN
+-ItemDAO and ItemDAOTest created
+
 ## 23.05.2019 SB 00:55
 - Fixed createItem to conform with other views of the new structure.
 - Added staffPanel with tabbed interface, this should probably be the ground for everything the staff
