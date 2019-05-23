@@ -3,6 +3,8 @@ package com.JohMagSim.Libr.modelTests;
 import com.JohMagSim.Libr.model.*;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 
 public class ItemDAOTest {
@@ -37,5 +39,15 @@ public class ItemDAOTest {
         } else {
             System.out.println("finns ej");
         }
+    }
+    @Test
+    public void findItems(){
+        String search="Super";
+        ArrayList<Item> items = new ArrayList<>();
+        items=ItemDAO.findItemsFromTitleAuthorsActorItemtypeCategory(search);
+        System.out.println(items);
+        System.out.println("Nr of rows for actors: " + items.size());
+
+
     }
 }
