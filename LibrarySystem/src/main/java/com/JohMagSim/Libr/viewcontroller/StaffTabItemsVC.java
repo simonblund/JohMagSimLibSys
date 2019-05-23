@@ -19,7 +19,12 @@ public class StaffTabItemsVC {
         StaffTabItemsCreateTabVC stictvc = new StaffTabItemsCreateTabVC(new StaffTabItemsCreateTab());
         stictvc.initStaffTabItemsCreateTab();
 
+        StaffTabItemsEditTabVC stietvc = new StaffTabItemsEditTabVC(new StaffTabItemsEditTab());
+        stietvc.initStaffTabItemsEditTab();
+
         sti.getItemTabs().addTab("Create", stictvc.getCip());
+        sti.getItemTabs().addTab("Edit", stietvc.getStiet());
+
         sti.add(BorderLayout.CENTER,sti.getItemTabs());
         sti.setVisible(true);
         sti.updateUI();
