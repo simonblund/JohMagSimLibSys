@@ -27,10 +27,20 @@ public class MenuBarPanelVC {
             mbp.add(mbp.getM4());
         }
 
+        mbp.getM1().addMenuListener(showHomePanel);
         mbp.getM2().addMenuListener(showCreateItem);
         mbp.getM5().addMenuListener(showStaffPanel);
         mbp.add(mbp.getM5());
     }
+
+    private MenuListener showHomePanel = new MenuListener() {
+        public void menuSelected(MenuEvent e) {
+            App.vc.showHomePanel();
+
+        }
+        public void menuDeselected(MenuEvent event){}
+        public void menuCanceled(MenuEvent e){}
+    };
 
     private MenuListener showUserSignin = new MenuListener() {
         public void menuSelected(MenuEvent e) {

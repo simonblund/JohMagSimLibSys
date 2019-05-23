@@ -56,4 +56,11 @@ public class ViewControl {
         cards.show(center,"sp");
     }
 
+    public void showHomePanel(){
+        HomePanelVC sp = new HomePanelVC(new HomePanel());
+        sp.initHomePanel();
+        center.add("hp",sp.getHomepanel());
+        cards.show(center,"hp");
+    }
+
 }

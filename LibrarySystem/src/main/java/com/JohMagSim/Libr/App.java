@@ -14,6 +14,7 @@ import java.util.*;
  */
 public class App {
     public static User signedInUser;
+    public static Staff signedInStaff;
     public static ViewControl vc = new ViewControl();
     public static void main(String[] args) {
         // Set up logger OBS if DEV send string to LibraryLoggerSetup

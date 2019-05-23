@@ -36,7 +36,7 @@ public class SigninStaffPanelVC {
                 public void run() {
                     if (AuthControl.checkEmailExists(email)) {
                         try{
-                            App.signedInUser = AuthControl.signIn(email, password);
+                            App.signedInStaff = AuthControl.staffSignIn(email, password);
 
                         }
                         catch (Exception b){

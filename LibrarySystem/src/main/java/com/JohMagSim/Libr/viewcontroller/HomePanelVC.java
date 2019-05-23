@@ -40,11 +40,7 @@ public class HomePanelVC {
                 DefaultListModel listModel = new DefaultListModel();
                 e.getActionCommand();
                 ArrayList<Item> items = new ArrayList();
-
-                List authors = new ArrayList();
-                authors.add("Steven Hawking");
-
-                items.add(new PaperItem("Harry Potter 2", "LB23", "Book", 3, 2019, 1, 14, "141414141414", "example", authors));
+                items = ItemDAO.findItemsFromTitleAuthorsActorItemtypeCategory(homepanel.getSearch().getText());
 
                 if (items.size()<1){
 

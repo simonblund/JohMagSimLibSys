@@ -33,6 +33,20 @@ public class AuthControl {
 
     }
 
+    public static Staff staffSignIn(String email, char[] passwordInput)throws Exception{
+        Staff user = StaffDAO.findStaffFromEmail(email);
+        String passString = new String(passwordInput);
+        if(passwordEncryptor.checkPassword(passString, user.getPasswordHash())){
+            return user;
+        } else{
+            user = null;
+            System.gc();
+            LOGGER.info("User password did not match.");
+            throw new Exception("User password did not match");
+        }
+
+    }
+
     public static boolean checkEmailExists(String email){
         User user = null;
         try{
