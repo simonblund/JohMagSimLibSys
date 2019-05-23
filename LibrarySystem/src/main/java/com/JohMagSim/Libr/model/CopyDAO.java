@@ -114,8 +114,9 @@ public class CopyDAO {
         String sql = "UPDATE copy SET " +
                 "barcode=?," +
                 "item_id=?," +
-                "state=?," +
-                "WHERE id= ?;";
+                "state=?" +
+                "WHERE id=?;";
+
         try {
 
             PreparedStatement pstmt = conn.prepareStatement(sql);
