@@ -21,7 +21,7 @@ public class CopyDAO {
 
             // Set the parameters
             pstmt.setInt(1, copy.getItemID());
-            pstmt.setInt(2, copy.getBarCode());
+            pstmt.setString(2, copy.getBarCode());
             pstmt.setInt(3, copy.getState());
             pstmt.executeUpdate();
 
@@ -47,7 +47,7 @@ public class CopyDAO {
             // Create copy from the result.
             Copy copy = new Copy();
             copy.setId(rs.getInt("id"));
-            copy.setBarCode(rs.getInt("barcode"));
+            copy.setBarCode(rs.getString("barcode"));
             copy.setState(rs.getInt("state"));
             result = copy;
 
@@ -77,7 +77,7 @@ public class CopyDAO {
                     Copy copy = new Copy();
                     copy.setItemID(rs.getInt("item_id"));
                     copy.setId(rs.getInt("id"));
-                    copy.setBarCode(rs.getInt("barcode"));
+                    copy.setBarCode(rs.getString("barcode"));
                     copy.setState(rs.getInt("state"));
 
                     result.add(copy);
@@ -122,7 +122,7 @@ public class CopyDAO {
             PreparedStatement pstmt = conn.prepareStatement(sql);
             // Set the parameters
 
-            pstmt.setInt(1, copy.getBarCode());
+            pstmt.setString(1, copy.getBarCode());
             pstmt.setInt(2, copy.getItemID());
             pstmt.setInt(3, copy.getState());
             pstmt.setInt(4, id); //id for the copy that should be updated

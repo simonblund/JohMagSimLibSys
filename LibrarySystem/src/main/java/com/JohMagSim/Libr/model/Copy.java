@@ -4,12 +4,12 @@ public class Copy {
 
     private int id;
     private int itemID;
-    private int barCode;
+    private String barCode;
     private int state; //Enum? Skulle kunna vara Enum i .java
     // och int i SQLLite då SQLLite inte kan hantera Enum
 
 
-    public Copy(int itemID, int barCode, int state) {
+    public Copy(int itemID, String barCode, int state) {
         this.itemID = itemID;
         this.barCode = barCode;
         this.state = state;
@@ -34,11 +34,11 @@ public class Copy {
         this.itemID = itemID;
     }
 
-    public int getBarCode() {
+    public String getBarCode() {
         return barCode;
     }
 
-    public void setBarCode(int barCode) {
+    public void setBarCode(String barCode) {
         this.barCode = barCode;
     }
 
