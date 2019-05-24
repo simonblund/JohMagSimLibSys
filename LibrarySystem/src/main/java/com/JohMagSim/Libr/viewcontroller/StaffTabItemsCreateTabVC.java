@@ -1,5 +1,6 @@
 package com.JohMagSim.Libr.viewcontroller;
 
+import com.JohMagSim.Libr.App;
 import com.JohMagSim.Libr.model.*;
 import com.JohMagSim.Libr.views.*;
 
@@ -30,7 +31,9 @@ public class StaffTabItemsCreateTabVC {
             String title = cip.getTitleTextField().getText();
             int edition = Integer.parseInt(cip.getEditionTextField().getText());
             int year = Integer.parseInt(cip.getYearTextfield().getText());
-            int staffId = 99;
+            int staffId;
+            staffId = App.signedInStaff.getStaffId();
+
             String location=cip.getLocationTextfield().getText();
             String type = (String) cip.getItemType().getSelectedItem();
             String ISBNEAN = cip.getISBNOrEANTextField().getText();
