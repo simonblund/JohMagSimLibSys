@@ -18,6 +18,10 @@ public class StaffTabCopiesCreateTabVC {
     }
 
     public void initStaffTabCopiesCreateTab(){
+        cip.getStateT().addItem("Available");
+        cip.getStateT().addItem("Loaned out");
+        cip.getStateT().addItem("Deprecated");
+
         cip.setVisible(true);
         cip.add(cip.getSearchForm());
         cip.getSearchForm().setVisible(true);
@@ -32,7 +36,6 @@ public class StaffTabCopiesCreateTabVC {
             String ibanean = cip.getSearchItemT().getText();
 
             loadedItem = ItemDAO.findItembyISBN(ibanean);
-
             cip.getLabel().setText("Item edited "+ loadedItem.getTitle());
             cip.remove(cip.getSearchForm());
             cip.getSearchForm().setVisible(false);
@@ -45,11 +48,9 @@ public class StaffTabCopiesCreateTabVC {
         @Override
         public void actionPerformed(ActionEvent e) {
             Copy copy = new Copy();
-
             copy.setBarCode(cip.getBarcodeT().getText());
             copy.setState(cip.getStateT().getSelectedIndex());
             copy.setItemID(loadedItem.getId());
-
             CopyDAO.createCopy(copy);
         }
     };
