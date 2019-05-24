@@ -17,6 +17,7 @@ import java.util.List;
 import static com.JohMagSim.Libr.utils.ViewProperties.dimension;
 
 public class CreateItemPanel extends JPanel {
+    /*
     private JPanel buttons = new JPanel();
     private JPanel middle = new JPanel();
     private JPanel top = new JPanel();
@@ -151,6 +152,7 @@ public class CreateItemPanel extends JPanel {
     public void setYearTextfield(JTextField yearTextfield) {
         this.yearTextfield = yearTextfield;
     }
+    */
 
    /* public JTextField getLoanTimeTextfield() {
         return loanTimeTextfield;
@@ -160,6 +162,7 @@ public class CreateItemPanel extends JPanel {
         this.loanTimeTextfield = loanTimeTextfield;
     }*/
 
+   /*
     public JTextField getCategoryTextfield() {
         return categoryTextfield;
     }
@@ -248,5 +251,5 @@ public class CreateItemPanel extends JPanel {
         middle.add(locationLable);
         middle.add(locationTextfield);
 
-    }
+    }*/
 }

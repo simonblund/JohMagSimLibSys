@@ -6,7 +6,7 @@ import java.awt.*;
 
 public class MenubarPanel extends JMenuBar {
     private  JMenu m1 = new JMenu("Home");
-    private  JMenu m2 = new JMenu("Item");
+   // private  JMenu m2 = new JMenu("Item");
     private  JMenu m3 = new JMenu("Sign in");
     private JMenu m4 = new JMenu("Sign out");
     private JMenu m5 = new JMenu("Staff");
@@ -27,13 +27,13 @@ public class MenubarPanel extends JMenuBar {
         this.m1 = m1;
     }
 
-    public JMenu getM2() {
+  /*  public JMenu getM2() {
         return m2;
     }
 
     public void setM2(JMenu m2) {
         this.m2 = m2;
-    }
+    }*/
 
     public JMenu getM3() {
         return m3;
@@ -55,7 +55,7 @@ public class MenubarPanel extends JMenuBar {
 
     public MenubarPanel(){
         add(m1);
-        add(m2);
+       // add(m2);
         setVisible(true);
     }
 }

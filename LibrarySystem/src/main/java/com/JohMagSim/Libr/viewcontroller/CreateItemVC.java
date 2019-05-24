@@ -10,7 +10,7 @@ import java.awt.event.*;
 import java.util.*;
 
 public class CreateItemVC {
-    private CreateItemPanel cip;
+  /*  private CreateItemPanel cip;
 
     public CreateItemVC(CreateItemPanel createItemPanel){
         cip = createItemPanel;
@@ -40,21 +40,40 @@ public class CreateItemVC {
             int year = Integer.parseInt(cip.getYearTextfield().getText());
 
             int staffId = 99;
-            int loanTime=1;
-           // int loanTime = Integer.parseInt(cip.getLoanTimeTextfield().getText());
-            String ISBNEAN = cip.getISBNOrEANTextField().getText();
-            String category = cip.getCategoryTextfield().getText();
-            String prodCountry = cip.getProdCountryTextfield().getText();
-            int ageRestriction = Integer.parseInt(cip.getAgeTextfield().getText());
-            String actors = cip.getActorsTextfield().getText();
+            int loanTime=0;
+            if(type.equals("DVD")) {
+                loanTime = 7;
 
-            String[] actorArray = actors.split(","); //common array created by split
-            List actorArrayList = Arrays.asList(actorArray);//Change from array to list
+                String ISBNEAN = cip.getISBNOrEANTextField().getText();
+                String category = cip.getCategoryTextfield().getText();
+                String prodCountry = cip.getProdCountryTextfield().getText();
+                int ageRestriction = Integer.parseInt(cip.getAgeTextfield().getText());
+                String actors = cip.getActorsTextfield().getText();
 
-            DVDItem dvdItem = new DVDItem(title, location, type, edition, year, staffId, loanTime, ISBNEAN, category, prodCountry, ageRestriction, actorArrayList);
-            DVDItemDAO.createDVDItem(dvdItem);
+                String[] actorArray = actors.split(","); //common array created by split
+                List actorArrayList = Arrays.asList(actorArray);//Change from array to list
+
+                DVDItem dvdItem = new DVDItem(title, location, type, edition, year, staffId, loanTime, ISBNEAN, category, prodCountry, ageRestriction, actorArrayList);
+                DVDItemDAO.createDVDItem(dvdItem);
+            }
+            else{
+
+                //if()
+
+                String ISBNEAN = cip.getISBNOrEANTextField().getText();
+                String category = cip.getCategoryTextfield().getText();
+                String authors = cip.getActorsTextfield().getText();
+
+                String[] authorArray = authors.split(","); //common array created by split
+                List authorArrayList = Arrays.asList(authorArray);//Change from array to list
+
+                PaperItem paperItem = new PaperItem(title, location, type, edition, year, staffId, loanTime, ISBNEAN, category, authorArrayList);
+                PaperItemDAO.createPaperItem(paperItem);
+
+
+            }
         }
-    };
+    };*/
 
 
 }
