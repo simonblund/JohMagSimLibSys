@@ -48,7 +48,7 @@ public class HomePanelVC {
                     homepanel.updateUI();
                 } else {
                     for(int i =0; i<items.size();i++){
-                        listModel.addElement(items.get(i).getTitle()+" "+ items.get(i).getYear());
+                        listModel.addElement(items.get(i).getTitle()+" "+ items.get(i).getYear()+" "+items.get(i).getISBNEAN());
 
                     }
                     homepanel.getItemList().setModel(listModel);

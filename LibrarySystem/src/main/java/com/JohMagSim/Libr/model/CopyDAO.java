@@ -33,7 +33,7 @@ public class CopyDAO {
         }
     }
 
-    public static Copy findCopybyBarcode(int barcode) {
+    public static Copy findCopybyBarcode(String barcode) {
         Connection conn = DBConnection.getConnection();
         String sql = "SELECT * FROM copy WHERE barcode = ? ;";
         ResultSet rs = null;
@@ -41,7 +41,7 @@ public class CopyDAO {
         // TODO: 05-05-2019 Should probably check what happens if copy does not exist in db
         try {
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, barcode);
+            pstmt.setString(1, barcode);
             rs = pstmt.executeQuery();
 
             // Create copy from the result.

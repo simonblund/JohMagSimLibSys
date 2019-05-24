@@ -27,7 +27,7 @@ public class LoanTest {
         user.setPasswordResetToken("123123123");
 
         //testCopy
-        Copy copy = new Copy(0, 0, 0);
+        Copy copy = new Copy(0, "0", 0);
 
 
         //testLoan

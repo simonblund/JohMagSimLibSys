@@ -21,6 +21,8 @@ public class StaffTabCopiesCreateTabVC {
         cip.setVisible(true);
         cip.add(cip.getSearchForm());
         cip.getSearchForm().setVisible(true);
+        cip.getSearchButton().addActionListener(searchItem);
+        cip.getSaveUser().addActionListener(saveCopy);
         cip.updateUI();
     }
 
@@ -28,12 +30,13 @@ public class StaffTabCopiesCreateTabVC {
         @Override
         public void actionPerformed(ActionEvent e) {
             String ibanean = cip.getSearchItemT().getText();
-            int id = ibanean.charAt(0);
-            loadedItem = ItemDAO.findItembyId(id);
+
+            loadedItem = ItemDAO.findItembyISBN(ibanean);
 
             cip.getLabel().setText("Item edited "+ loadedItem.getTitle());
             cip.remove(cip.getSearchForm());
             cip.getSearchForm().setVisible(false);
+            cip.add(cip.getForm());
             cip.getForm().setVisible(true);
         }
     };

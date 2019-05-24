@@ -7,12 +7,12 @@ import static org.junit.Assert.*;
 public class CopyDAOTest {
 
     public Copy testCopy() {
-        Copy copyItem = new Copy(1, 123123, 1);
+        Copy copyItem = new Copy(1, "123123", 1);
         return copyItem;
     }
 
     public Copy copyFindCopybyBarcode() {
-        Copy testBarcode = CopyDAO.findCopybyBarcode(123123);
+        Copy testBarcode = CopyDAO.findCopybyBarcode("123123");
         return testBarcode;
     }
 
