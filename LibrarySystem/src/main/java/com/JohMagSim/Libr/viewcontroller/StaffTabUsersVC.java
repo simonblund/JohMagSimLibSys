@@ -22,8 +22,17 @@ public class StaffTabUsersVC {
         StaffTabUsersEditTabVC stuetvc = new StaffTabUsersEditTabVC(new StaffTabUsersEditTab());
         stuetvc.initStaffTabUsersEditTab();
 
+        StaffTabUsersStaffCreateTabVC stusctvc = new StaffTabUsersStaffCreateTabVC(new StaffTabUsersStaffCreateTab());
+        stusctvc.initStaffTabUsersStaffCreateTab();
+
+        StaffTabUsersStaffEditTabVC staffTabUsersStaffEditTabVC = new StaffTabUsersStaffEditTabVC(new StaffTabUsersStaffEditTab());
+        staffTabUsersStaffEditTabVC.initStaffTabUsersStaffEditTab();
+
         sti.getUserTabs().addTab("Create", stcctvc.getCip());
         sti.getUserTabs().addTab("Edit", stuetvc.getCip());
+
+        sti.getUserTabs().addTab("Create Staff", stusctvc.getCip());
+        sti.getUserTabs().addTab("Edit Staff", staffTabUsersStaffEditTabVC.getCip());
 
         sti.add(BorderLayout.CENTER,sti.getUserTabs());
         sti.setVisible(true);
