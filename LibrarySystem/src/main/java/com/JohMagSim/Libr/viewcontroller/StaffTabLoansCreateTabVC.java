@@ -26,6 +26,7 @@ public class StaffTabLoansCreateTabVC {
         cip.getAddCopy().addActionListener(createLoan);
         cip.add(cip.getFindUserPanel());
         cip.getFindUserPanel().setVisible(true);
+        cip.getFinishLoan().addActionListener(saveLoan);
 
         cip.setVisible(true);
         cip.updateUI();
@@ -74,9 +75,12 @@ public class StaffTabLoansCreateTabVC {
     private ActionListener saveLoan = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-
-
-            cip.add(new JLabel("User "+" created."));
+            ArrayList loans = LoanDAO.findActiveLoansFromUserID(loadedUser.getId());
+            new ReceiptFrame(loans, loadedUser);
+            loadedUser = null;
+            cip.getLoanform().setVisible(false);
+            cip.getFindUserPanel().setVisible(true);
+            cip.getFindUserEmailT().setText("");
 
         }
     };

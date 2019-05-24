@@ -60,6 +60,33 @@ public class CopyDAO {
         return result;
     }
 
+    public static Copy findCopybyId(int id) {
+        Connection conn = DBConnection.getConnection();
+        String sql = "SELECT * FROM copy WHERE id = ? ;";
+        ResultSet rs = null;
+        Copy result = null;
+        // TODO: 05-05-2019 Should probably check what happens if copy does not exist in db
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            rs = pstmt.executeQuery();
+
+            // Create copy from the result.
+            Copy copy = new Copy();
+            copy.setId(rs.getInt("id"));
+            copy.setItemID(rs.getInt("item_id"));
+            copy.setBarCode(rs.getString("barcode"));
+            copy.setState(rs.getInt("state"));
+            result = copy;
+
+        } catch (SQLException e) {
+            LOGGER.severe("findCopyFrombarcode " + e.getMessage());
+        } finally {
+            DBConnection.closeConnection(conn);
+        }
+        return result;
+    }
+
     public static ArrayList<Copy> findCopiesFromitemId(int id) {
         Connection conn = DBConnection.getConnection();
         String sql = "SELECT * FROM item, copy WHERE item.id=copy.item_id AND item.id=?;";

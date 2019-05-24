@@ -137,8 +137,13 @@ public class LoanDAO {
                     checkOutDate = LocalDate.parse(rs.getString("timeOfCheckout"));
                     loan.setDate(checkOutDate);
                     //set expected returndate
-                    returnDate = LocalDate.parse(rs.getString("timeOfReturn"));
-                    loan.setExpectedReturnDate(returnDate);
+                    String expectedreturndate = rs.getString("timeOfExpectedReturn");
+                    if (expectedreturndate !=null){
+                        returnDate = LocalDate.parse(expectedreturndate);
+                        loan.setExpectedReturnDate(returnDate);
+                    }
+
+
                     //set copyId
                     loan.setCopyID(rs.getInt("copy_id"));
                     //set userId
