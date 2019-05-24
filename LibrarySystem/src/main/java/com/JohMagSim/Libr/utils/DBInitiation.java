@@ -75,7 +75,7 @@ public class DBInitiation {
         // Item table
         createTable("CREATE TABLE IF NOT EXISTS item (\n"
                 + "	id integer PRIMARY KEY AUTOINCREMENT,\n"
-                + " ISBN_EAN text NOT NULL, \n"
+                + " ISBN_EAN text NOT NULL UNIQUE, \n"
                 + "	title text NOT NULL,\n"
                 + "	itemType text NOT NULL,\n"
                 + "	edition integer NOT NULL DEFAULT 1,\n"
@@ -95,7 +95,7 @@ public class DBInitiation {
         createTable("CREATE TABLE IF NOT EXISTS copy (\n"
                 + "	id integer PRIMARY KEY AUTOINCREMENT,\n"
                 + "	item_id integer,\n"
-                + "	barcode text NOT NULL,\n"
+                + "	barcode text NOT NULL UNIQUE,\n"
                 + "	state integer DEFAULT 0,\n"
                 + "	FOREIGN KEY (item_id) REFERENCES item(id) ON DELETE CASCADE \n"
                 + ");", "copy");
