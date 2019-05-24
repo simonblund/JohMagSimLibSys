@@ -19,6 +19,7 @@ public class StaffTabItemsCreateTabVC {
 
     public void initStaffTabItemsCreateTab(){
         cip.getSaveDVDButton().addActionListener(saveDVDButtonPressed);
+        cip.getCancelButton().addActionListener(cancelButtonPressed);
         cip.setVisible(true);
         cip.updateUI();
     }
@@ -27,29 +28,62 @@ public class StaffTabItemsCreateTabVC {
         @Override
         public void actionPerformed(ActionEvent e) {
             String title = cip.getTitleTextField().getText();
-
-            String location = "";
-
-            String type = (String) cip.getItemType().getSelectedItem();
-
-
             int edition = Integer.parseInt(cip.getEditionTextField().getText());
             int year = Integer.parseInt(cip.getYearTextfield().getText());
-
             int staffId = 99;
-            int loanTime=1;
-            // int loanTime = Integer.parseInt(cip.getLoanTimeTextfield().getText());
+            String location=cip.getLocationTextfield().getText();
+            String type = (String) cip.getItemType().getSelectedItem();
             String ISBNEAN = cip.getISBNOrEANTextField().getText();
             String category = cip.getCategoryTextfield().getText();
-            String prodCountry = cip.getProdCountryTextfield().getText();
-            int ageRestriction = Integer.parseInt(cip.getAgeTextfield().getText());
-            String actors = cip.getActorsTextfield().getText();
 
-            String[] actorArray = actors.split(","); //common array created by split
-            List actorArrayList = Arrays.asList(actorArray);//Change from array to list
+            if(type.equals("DVD")) {
+                int loanTime = 7;
+                int ageRestriction;
+                String prodCountry = cip.getProdCountryTextfield().getText();
+                String stringAgeRestriction = cip.getAgeTextfield().getText();
+                if(stringAgeRestriction.equals(""))
+                {
+                   ageRestriction=0;
+                }
+                else
+                    ageRestriction= Integer.parseInt(stringAgeRestriction);
+                String actors = cip.getActorsTextfield().getText();
+                String[] actorArray = actors.split(","); //common array created by split
+                List actorArrayList = Arrays.asList(actorArray);//Change from array to list
 
-            DVDItem dvdItem = new DVDItem(title, location, type, edition, year, staffId, loanTime, ISBNEAN, category, prodCountry, ageRestriction, actorArrayList);
-            DVDItemDAO.createDVDItem(dvdItem);
+                DVDItem dvdItem = new DVDItem(title, location, type, edition, year, staffId, loanTime, ISBNEAN, category, prodCountry, ageRestriction, actorArrayList);
+                DVDItemDAO.createDVDItem(dvdItem);
+            }
+            if(type.equals("Course book") || type.equals("Journal") || type.equals("Reference book") || type.equals("Regular book"))
+            {
+                int loanTime=0;
+                if(type.equals("Course book"))
+                {loanTime=14;}
+                if(type.equals("Regular book"))
+                    loanTime=30;
+
+                String authors = cip.getActorsTextfield().getText();
+                String[] authorArray = authors.split(","); //common array created by split
+                List authorArrayList = Arrays.asList(authorArray);//Change from array to list
+                PaperItem paperItem = new PaperItem(title, location, type, edition, year, staffId, loanTime, ISBNEAN, category, authorArrayList);
+                PaperItemDAO.createPaperItem(paperItem);
+            }
+
+        }
+    };
+    private ActionListener cancelButtonPressed = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            cip.getTitleTextField().setText("");
+            cip.getEditionTextField().setText("");
+            cip.getYearTextfield().setText("");
+            cip.getAgeTextfield().setText("");
+            cip.getLocationTextfield().setText("");
+            cip.getItemType().setSelectedIndex(0);
+            cip.getISBNOrEANTextField().setText("");
+            cip.getCategoryTextfield().setText("");
+            cip.getActorsTextfield().setText("");
+            cip.getProdCountryTextfield().setText("");
         }
     };
 }

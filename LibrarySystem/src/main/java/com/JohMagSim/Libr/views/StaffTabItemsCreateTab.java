@@ -7,39 +7,40 @@ public class StaffTabItemsCreateTab extends JComponent {
     private JPanel buttons = new JPanel();
     private JPanel middle = new JPanel();
     private JPanel top = new JPanel();
-    private JButton saveDVDButton = new JButton("Create DVD-item");
+    private JButton saveDVDButton = new JButton("Create item");
     private JButton cancelButton = new JButton("Cancel");
 
-    private JLabel title = new JLabel("Title: ");
+    private JLabel title = new JLabel("Title:");
     private JTextField titleTextField = new JTextField(10);
 
-    private JLabel ISBNEAN = new JLabel("ISBN or EAN: ");
+    private JLabel ISBNEAN = new JLabel("ISBN or EAN:");
     private JTextField ISBNOrEANTextField = new JTextField(10);
 
-    private JLabel itemTypeLabel = new JLabel("Item type: ");
+    private JLabel itemTypeLabel = new JLabel("Item type:");
     private String[] itemStrings = {"DVD", "Course book", "Journal", "Reference book", "Regular book"};
     private JComboBox itemType = new JComboBox(itemStrings);
 
     private JLabel editionLable = new JLabel("Edition: ");
     private JTextField editionTextField = new JTextField(2);
 
-    private JLabel locationLable = new JLabel("Location: ");
+    private JLabel locationLable = new JLabel("Location:");
     private JTextField locationTextfield = new JTextField(2);
 
-    private JLabel yearLable = new JLabel("Year: ");
-    private JTextField yearTextfield = new JTextField(2);
+    private JLabel yearLable = new JLabel("Year:");
+    private JTextField yearTextfield = new JTextField(4);
 
     //  private JTextField loanTimeTextfield = new JTextField("Enter loantime");
-    private JLabel categoryLable = new JLabel("Category: ");
+    private JLabel categoryLable = new JLabel("Category:");
     private JTextField categoryTextfield = new JTextField(5);
-    private JLabel prodcountry = new JLabel("Production country: ");
+
+    private JLabel prodcountry = new JLabel("Production country(DVD):");
     private JTextField prodCountryTextfield = new JTextField(5);
 
-    private JLabel age = new JLabel("Age restriction, for DVD:");
+    private JLabel age = new JLabel("Age restriction(DVD):");
     private JTextField ageTextfield = new JTextField(2);
 
-    private JLabel actors = new JLabel("Actors:");
-    private JTextField actorsTextfield = new JTextField(10);
+    private JLabel actors = new JLabel("Actors(DVD) or Authors(paper items):");
+    private JTextField actorsTextfield = new JTextField(20);
 
 
     public JPanel getButtons() {
@@ -216,24 +217,27 @@ public class StaffTabItemsCreateTab extends JComponent {
         top.add(categoryLable);
         top.add(categoryTextfield);
 
-        middle.add(age);
-        middle.add(ageTextfield);
+
 
         middle.add(editionLable);
         middle.add(editionTextField);
 
         middle.add(yearLable);
         middle.add(yearTextfield);
-        //  middle.add(loanTimeTextfield);
+
+        middle.add(locationLable);
+        middle.add(locationTextfield);
 
         middle.add(prodcountry);
         middle.add(prodCountryTextfield);
 
+        middle.add(age);
+        middle.add(ageTextfield);
+
         middle.add(actors);
         middle.add(actorsTextfield);
 
-        middle.add(locationLable);
-        middle.add(locationTextfield);
+
 
     }
 }
