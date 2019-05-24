@@ -29,10 +29,15 @@ public class StaffPanelVC {
         StaffTabUsersVC stuvc = new StaffTabUsersVC(new StaffTabUsers());
         stuvc.initStaffTabUsers();
 
+        StaffTabLoansVC staffTabLoansVC = new StaffTabLoansVC(new StaffTabLoans());
+        staffTabLoansVC.initStaffTabLoansVC();
+
         sp.getStaffTabs().addTab("Staff", sthvc.getSth());
         sp.getStaffTabs().addTab("Item", stivc.getSti());
         sp.getStaffTabs().addTab("Copies", stcvc.getSti());
         sp.getStaffTabs().addTab("Users", stuvc.getSti());
+        sp.getStaffTabs().addTab("Loans", staffTabLoansVC.getSti());
+
         sp.add(BorderLayout.CENTER,sp.getStaffTabs());
         sp.setVisible(true);
         sp.updateUI();

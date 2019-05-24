@@ -47,6 +47,7 @@ public class CopyDAO {
             // Create copy from the result.
             Copy copy = new Copy();
             copy.setId(rs.getInt("id"));
+            copy.setItemID(rs.getInt("item_id"));
             copy.setBarCode(rs.getString("barcode"));
             copy.setState(rs.getInt("state"));
             result = copy;
